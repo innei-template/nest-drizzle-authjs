@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "config:base",
+    "group:allNonMajor",
+    ":automergePatch",
+    ":automergeTesters",
+    ":automergeLinters",
+    ":rebaseStalePrs"
+  ],
+  "labels": ["dependencies"],
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "updateTypes": ["major"],
+      "labels": ["UPDATE-MAJOR"]
+    }
+  ],
+  "ignoreDeps": ["nanoid", "chalk", "consola"]
+}

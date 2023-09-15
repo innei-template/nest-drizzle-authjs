@@ -1,0 +1,17 @@
+{
+  "name": "@meta-muse/utils",
+  "private": true,
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "description": "",
+  "author": "Innei <https://innei.in>",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  }
+}
