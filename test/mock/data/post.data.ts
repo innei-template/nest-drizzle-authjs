@@ -1,4 +1,4 @@
-import { snowflake } from '@core/processors/database/snowflake.util'
+import { snowflake } from '@meta-muse/utils'
 
 const getRandomInt = (min, max) =>
   Math.floor(Math.random() * (max - min + 1)) + min
@@ -9,7 +9,7 @@ export const generateMockPost = () => {
     title: `Mock Post Title ${getRandomInt(1, 100)}`,
     copyright: true,
     allowComment: true,
-    pin: false,
+
     isPublished: true,
   }
 }

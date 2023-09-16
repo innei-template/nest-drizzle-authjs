@@ -1,3 +1,4 @@
+import { relations } from 'drizzle-orm'
 import {
   boolean,
   index,
@@ -36,7 +37,6 @@ export const user = pgTable(
       .defaultNow()
       .notNull(),
     updatedAt: timestamp('updated_at', { precision: 3, mode: 'string' }),
-    apiToken: text('api_token').references(() => apiToken.token),
   },
   (table) => {
     return {
@@ -44,6 +44,10 @@ export const user = pgTable(
     }
   },
 )
+
+export const userApiToken = relations(user, ({ many }) => ({
+  apiToken: many(apiToken),
+}))
 
 export const apiToken = pgTable(
   'api_tokens',
@@ -99,6 +103,7 @@ export const post = pgTable(
     copyright: boolean('copyright').default(true).notNull(),
     allowComment: boolean('allow_comment').default(true).notNull(),
     count: jsonb('count').default({ like: 0, read: 0 }).notNull(),
+    isPublished: boolean('is_published').default(true).notNull(),
   },
   (table) => {
     return {

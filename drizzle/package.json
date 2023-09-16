@@ -5,7 +5,8 @@
     "drizzle-kit": "0.19.13",
     "drizzle-orm": "0.28.6",
     "pg": "8.11.3",
-    "postgres": "3.3.5"
+    "postgres": "3.3.5",
+    "@meta-muse/utils": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.2.2"
@@ -16,8 +17,8 @@
   "description": "",
   "author": "Innei <https://innei.in>",
   "license": "MIT",
-  "main": "./dist/index.js",
+  "main": "./index.js",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./index.js"
   }
 }

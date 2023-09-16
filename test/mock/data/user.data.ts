@@ -1,5 +1,5 @@
 import { UserRegisterDto } from '@core/modules/user/dtos/register.dto'
-import { snowflake } from '@core/processors/database/snowflake.util'
+import { snowflake } from '@meta-muse/utils'
 
 export const generateMockUser = (): UserRegisterDto => {
   return {

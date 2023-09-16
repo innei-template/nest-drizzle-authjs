@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@meta-muse/drizzle": "workspace:*",
+    "@meta-muse/utils": "workspace:*",
     "@nestjs/cache-manager": "2.1.0",
     "@nestjs/common": "10.2.4",
     "@nestjs/config": "3.0.1",

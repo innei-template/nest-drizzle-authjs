@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid'
 import { BizException } from '@core/common/exceptions/biz.exception'
 import { ErrorCodeEnum } from '@core/constants/error-code.constant'
 import { DatabaseService } from '@core/processors/database/database.service'
-import { schema } from '@meta-muse/drizzle'
+import { eq, InferInsertModel, schema } from '@meta-muse/drizzle'
 import {
   Injectable,
   Logger,
@@ -13,7 +13,11 @@ import {
 
 import { AuthService } from '../auth/auth.service'
 import { UserRegisterDto } from './dtos/register.dto'
-import { UserSchemaProjection } from './user.protect'
+import {
+  userSchema,
+  UserSchemaProjection,
+  UserSchemaSerializeProjection,
+} from './user.protect'
 
 @Injectable()
 export class UserService {
@@ -26,12 +30,6 @@ export class UserService {
   ) {}
 
   async register(userDto: UserRegisterDto) {
-    // const isExist = await this.db.prisma.user.exists({
-    //   where: {
-    //     username: userDto.username,
-    //   },
-    // })
-
     const isExist = await this.db.drizzle.query.user
       .findFirst({
         where: (user, { eq }) => eq(user.username, userDto.username),
@@ -53,7 +51,7 @@ export class UserService {
       })
       .returning()
 
-    return model
+    return model[0]
   }
 
   /**
@@ -63,7 +61,10 @@ export class UserService {
    * @param {string} id - 用户 id
    * @param {Partial} data - 部分修改数据
    */
-  async patchUserData(id: string, data: Partial<UserRegisterDto>) {
+  async patchUserData(
+    id: string,
+    data: Partial<InferInsertModel<typeof schema.user>>,
+  ) {
     const { password } = data
 
     for (const key in UserSchemaProjection) {
@@ -74,16 +75,6 @@ export class UserService {
 
     const doc = { ...data }
     if (password !== undefined) {
-      // const currentUser = await this.db.prisma.user.findUnique({
-      //   where: {
-      //     id,
-      //   },
-      //   select: {
-      //     password: true,
-      //     apiTokens: true,
-      //   },
-      // })
-
       const currentUser = await this.db.drizzle.query.user.findFirst({
         where: (user, { eq }) => eq(user.id, id),
         columns: {
@@ -105,50 +96,22 @@ export class UserService {
       doc.authCode = newCode
     }
 
-    await this.db.prisma.user.update({
-      where: {
-        id,
-      },
-      data: doc,
-    })
+    await this.db.drizzle
+      .update(schema.user)
+      .set({
+        ...doc,
+      })
+      .where(eq(schema.user.id, id))
   }
 
-  /**
-   * 记录登陆的足迹 (ip, 时间)
-   *
-   * @async
-   * @param {string} ip - string
-   * @return {Promise<Record<string, Date|string>>} 返回上次足迹
-   */
-  async recordFootstep(ip: string): Promise<Record<string, Date | string>> {
-    const master = await this.db.prisma.user.findFirst()
-    if (!master) {
+  async getOwner() {
+    const firstUser = await this.db.drizzle.query.user.findFirst()
+
+    if (!firstUser) {
       throw new BizException(ErrorCodeEnum.UserNotFound)
     }
-    const PrevFootstep = {
-      lastLoginTime: master.lastLoginTime || new Date(1586090559569),
-      lastLoginIp: master.lastLoginIp || null,
-    }
-    await this.db.prisma.user.update({
-      where: {
-        id: master.id,
-      },
-      data: {
-        lastLoginTime: new Date(),
-        lastLoginIp: ip,
-      },
-    })
-
-    this.Logger.warn(`主人已登录，IP: ${ip}`)
-    return PrevFootstep as any
-  }
-
-  getOwner() {
-    // TODO omit keys
-    return this.db.prisma.user
-      .findFirstOrThrow()
-      .catch(
-        resourceNotFoundWrapper(new BizException(ErrorCodeEnum.UserNotFound)),
-      )
+    return await userSchema
+      .omit(UserSchemaSerializeProjection)
+      .parseAsync(firstUser)
   }
 }

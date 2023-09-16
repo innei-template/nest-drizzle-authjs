@@ -2,6 +2,7 @@ import { AxiosRequestConfig } from 'axios'
 import { argv } from 'zx-cjs'
 
 import { isDev } from './shared/utils/environment.util'
+import { mergeArgv } from './utils/env.util'
 
 console.log(argv)
 export const PORT = argv.port || 3333
@@ -17,6 +18,10 @@ export const CROSS_DOMAIN = {
     '22333322.xyz',
   ],
   allowedReferer: 'innei.in',
+}
+
+export const DATABASE = {
+  url: mergeArgv('database_url'),
 }
 
 export const REDIS = {

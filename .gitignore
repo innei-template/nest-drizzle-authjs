@@ -42,4 +42,5 @@ run
 
 apps/core/dist
 
-drizzle/dist
+drizzle/*.js
+packages/*/dist

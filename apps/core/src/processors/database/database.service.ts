@@ -20,6 +20,6 @@ export class DatabaseService implements OnModuleInit {
   }
 
   async onModuleInit() {
-    await migrateDb(this.drizzle)
+    await migrateDb(DATABASE.url)
   }
 }

@@ -4,10 +4,10 @@ import { z } from 'zod'
 import { createProjectionOmit } from '@core/shared/utils/schema.util'
 import { schema } from '@meta-muse/drizzle'
 
-const userSchema = createInsertSchema(schema.user)
+export const userSchema = createInsertSchema(schema.user)
 export const UserSchemaProjection = createProjectionOmit(
   userSchema.shape,
-  ['lastLoginIp', 'authCode', 'lastLoginIp', 'lastLoginTime'],
+  ['lastLoginIp', 'authCode', 'lastLoginTime'],
   true,
 )
 
