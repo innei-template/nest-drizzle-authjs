@@ -4,8 +4,6 @@ import { mkdirSync } from 'fs'
 import { DATA_DIR, LOG_DIR } from '@core/constants/path.constant'
 import { Logger } from '@nestjs/common'
 
-import { registerStdLogger } from './consola.global'
-
 import './dayjs.global'
 
 import chalk from 'chalk'
@@ -21,5 +19,4 @@ function mkdirs() {
 
 export function register() {
   mkdirs()
-  registerStdLogger()
 }

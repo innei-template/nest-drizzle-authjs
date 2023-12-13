@@ -2,14 +2,14 @@
   "name": "@meta-muse/drizzle",
   "private": true,
   "dependencies": {
-    "drizzle-kit": "0.19.13",
-    "drizzle-orm": "0.28.6",
+    "@meta-muse/utils": "workspace:*",
+    "drizzle-kit": "0.20.6",
+    "drizzle-orm": "0.29.1",
     "pg": "8.11.3",
-    "postgres": "3.3.5",
-    "@meta-muse/utils": "workspace:*"
+    "postgres": "3.4.3"
   },
   "devDependencies": {
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   },
   "scripts": {
     "build": "tsc"
