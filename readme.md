@@ -12,7 +12,7 @@ cp .env.template .env
 pnpm i
 ```
 
-## Configure Auth.js 
+## Configure Auth.js
 
 The configuration is located at `/apps/core/src/modules/auth/auth.config.ts` Please change your desired Provider here, GitHub OAuth is used by default.
 
