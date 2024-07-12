@@ -46,7 +46,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pnpm i --no-optional
+          pnpm i
       - name: Build project
         run: |
           npm run build

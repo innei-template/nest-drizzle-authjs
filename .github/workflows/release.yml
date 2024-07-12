@@ -31,7 +31,6 @@ jobs:
           redis-version: 6
       - uses: pnpm/action-setup@v4.0.0
         with:
-          version: 8.x.x
           run_install: true
       - name: Test
         run: |
@@ -113,7 +112,6 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
       - uses: pnpm/action-setup@v4.0.0
         with:
-          version: 8.x.x
           run_install: true
       - name: Build project
         run: |
