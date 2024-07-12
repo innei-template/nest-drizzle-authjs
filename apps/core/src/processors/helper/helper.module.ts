@@ -3,15 +3,9 @@ import { Global, Module, Provider } from '@nestjs/common'
 import { EventEmitterModule } from '@nestjs/event-emitter/dist/event-emitter.module'
 import { ThrottlerModule } from '@nestjs/throttler'
 
-import { EventManagerService } from './helper.event.service'
 import { HttpService } from './helper.http.service'
-import { JWTService } from './helper.jwt.service'
 
-const providers: Provider<any>[] = [
-  HttpService,
-  JWTService,
-  EventManagerService,
-]
+const providers: Provider<any>[] = [HttpService]
 
 @Module({
   imports: [

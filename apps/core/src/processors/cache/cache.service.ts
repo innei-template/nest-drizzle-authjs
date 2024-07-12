@@ -25,6 +25,7 @@ export class CacheService {
 
   constructor(@Inject(CACHE_MANAGER) cache: Cache) {
     this.cache = cache
+
     this.redisClient.on('ready', () => {
       this.logger.log('Redis is ready!')
     })

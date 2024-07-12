@@ -1,7 +1,6 @@
 import { argv } from 'zx-cjs'
 
 import { parseBooleanishValue } from './constants/parser.utilt'
-import { isDev } from './shared/utils/environment.util'
 import { machineIdSync } from './shared/utils/machine.util'
 import { mergeArgv } from './utils/env.util'
 import type { AxiosRequestConfig } from 'axios'
@@ -18,6 +17,8 @@ export const CROSS_DOMAIN = {
     'shizuri.net',
     'localhost:9528',
     'localhost:2323',
+    'localhost:3000',
+    'localhost:3333',
     '127.0.0.1',
     'mbp.cc',
     'local.innei.test',
@@ -31,10 +32,15 @@ export const REDIS = {
   port: mergeArgv('redis_port') || 6379,
   password: mergeArgv('redis_password') || null,
   ttl: null,
-  httpCacheTTL: 5,
   max: 5,
-  disableApiCache:
-    (isDev || mergeArgv('disable_cache')) && mergeArgv('enable_cache_debug'),
+}
+
+export const HTTP_CACHE = {
+  ttl: 15, // s
+  enableCDNHeader:
+    parseBooleanishValue(argv.http_cache_enable_cdn_header) ?? true, // s-maxage
+  enableForceCacheHeader:
+    parseBooleanishValue(argv.http_cache_enable_force_cache_header) ?? false, // cache-control: max-age
 }
 
 export const DATABASE = {
@@ -63,4 +69,12 @@ export const ENCRYPT = {
     ? !!ENCRYPT_KEY
     : false,
   algorithm: mergeArgv('encrypt_algorithm') || 'aes-256-ecb',
+}
+
+export const AUTH = {
+  github: {
+    clientId: mergeArgv('github_client_id'),
+    clientSecret: mergeArgv('github_client_secret'),
+  },
+  secret: mergeArgv('auth_secret'),
 }

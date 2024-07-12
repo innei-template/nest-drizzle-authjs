@@ -1,114 +1,87 @@
-import { relations } from 'drizzle-orm'
 import {
   boolean,
-  index,
-  jsonb,
+  integer,
   pgTable,
+  primaryKey,
   text,
   timestamp,
-  uniqueIndex,
-  varchar,
 } from 'drizzle-orm/pg-core'
 
-import { snowflake } from '@meta-muse/utils'
+import type { AdapterAccountType } from '@meta-muse/complied'
 
-export const user = pgTable(
-  'users',
-  {
-    id: text('id')
-      .$defaultFn(() => snowflake.nextId())
-      .primaryKey()
-      .notNull(),
-    username: varchar('username', { length: 80 }).notNull(),
-    name: varchar('name', { length: 80 }).notNull(),
-    introduce: varchar('introduce', { length: 255 }),
-    avatar: varchar('avatar', { length: 1024 }),
-    password: varchar('password', { length: 80 }).notNull(),
-    mail: varchar('mail', { length: 80 }),
-    url: varchar('url', { length: 1024 }),
-    lastLoginTime: timestamp('last_login_time', {
-      precision: 3,
-      mode: 'string',
-    }),
-    lastLoginIp: text('last_login_ip'),
-    socialIds: jsonb('social_ids').default({}),
-    authCode: text('auth_code').notNull(),
-    createdAt: timestamp('created_at', { precision: 3, mode: 'string' })
-      .defaultNow()
-      .notNull(),
-    updatedAt: timestamp('updated_at', { precision: 3, mode: 'string' }),
-  },
-  (table) => {
-    return {
-      usernameKey: uniqueIndex('User_username_key').on(table.username),
-    }
-  },
-)
-
-export const userApiToken = relations(user, ({ many }) => ({
-  apiToken: many(apiToken),
-}))
-
-export const apiToken = pgTable(
-  'api_tokens',
-  {
-    id: text('id')
-      .$defaultFn(() => snowflake.nextId())
-      .primaryKey()
-      .notNull(),
-    userId: text('userId')
-      .notNull()
-      .references(() => user.id, { onDelete: 'restrict', onUpdate: 'cascade' }),
-    created: timestamp('created', { precision: 3, mode: 'string' })
-      .defaultNow()
-      .notNull(),
-    token: text('token').notNull(),
-    expired: timestamp('expired', { precision: 3, mode: 'string' }),
-    name: text('name').notNull(),
-  },
-  (table) => {
-    return {
-      nameKey: uniqueIndex('ApiToken_name_key').on(table.name),
-    }
-  },
-)
-
-export const oauth = pgTable('oauth', {
+export const users = pgTable('user', {
   id: text('id')
-    .$defaultFn(() => snowflake.nextId())
     .primaryKey()
-    .notNull(),
-  userId: text('userId')
-    .notNull()
-    .references(() => user.id, { onDelete: 'restrict', onUpdate: 'cascade' }),
-  platform: text('platform').notNull(),
-  oauthId: text('oauthId').notNull(),
+    .$defaultFn(() => crypto.randomUUID()),
+  name: text('name'),
+  email: text('email').notNull(),
+  emailVerified: timestamp('emailVerified', { mode: 'date' }),
+  image: text('image'),
 })
 
-export const post = pgTable(
-  'posts',
+export const accounts = pgTable(
+  'account',
   {
-    id: text('id')
-      .$defaultFn(() => snowflake.nextId())
-      .primaryKey()
-      .notNull(),
-    slug: text('slug').notNull().unique(),
-    text: text('text').notNull(),
-    title: varchar('title', { length: 255 }).notNull(),
-    createdAt: timestamp('created_at', { precision: 3, mode: 'string' })
-      .defaultNow()
-      .notNull(),
-    updatedAt: timestamp('updated_at', { precision: 3, mode: 'string' }),
+    userId: text('userId')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    type: text('type').$type<AdapterAccountType>().notNull(),
+    provider: text('provider').notNull(),
+    providerAccountId: text('providerAccountId').notNull(),
+    refresh_token: text('refresh_token'),
+    access_token: text('access_token'),
+    expires_at: integer('expires_at'),
+    token_type: text('token_type'),
+    scope: text('scope'),
+    id_token: text('id_token'),
+    session_state: text('session_state'),
+  },
+  (account) => ({
+    compoundKey: primaryKey({
+      columns: [account.provider, account.providerAccountId],
+    }),
+  }),
+)
 
-    copyright: boolean('copyright').default(true).notNull(),
-    allowComment: boolean('allow_comment').default(true).notNull(),
-    count: jsonb('count').default({ like: 0, read: 0 }).notNull(),
-    isPublished: boolean('is_published').default(true).notNull(),
+export const sessions = pgTable('session', {
+  sessionToken: text('sessionToken').primaryKey(),
+  userId: text('userId')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  expires: timestamp('expires', { mode: 'date' }).notNull(),
+})
+
+export const verificationTokens = pgTable(
+  'verificationToken',
+  {
+    identifier: text('identifier').notNull(),
+    token: text('token').notNull(),
+    expires: timestamp('expires', { mode: 'date' }).notNull(),
   },
-  (table) => {
-    return {
-      slugIdx: index('Post_slug_idx').on(table.slug),
-      createdAtIdx: index('Post_created_at_idx').on(table.createdAt),
-    }
+  (verificationToken) => ({
+    compositePk: primaryKey({
+      columns: [verificationToken.identifier, verificationToken.token],
+    }),
+  }),
+)
+
+export const authenticators = pgTable(
+  'authenticator',
+  {
+    credentialID: text('credentialID').notNull().unique(),
+    userId: text('userId')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    providerAccountId: text('providerAccountId').notNull(),
+    credentialPublicKey: text('credentialPublicKey').notNull(),
+    counter: integer('counter').notNull(),
+    credentialDeviceType: text('credentialDeviceType').notNull(),
+    credentialBackedUp: boolean('credentialBackedUp').notNull(),
+    transports: text('transports'),
   },
+  (authenticator) => ({
+    compositePK: primaryKey({
+      columns: [authenticator.userId, authenticator.credentialID],
+    }),
+  }),
 )

@@ -1,5 +1,6 @@
 import { mkdirSync } from 'node:fs'
 
+import crypto from 'node:crypto'
 import { DATA_DIR, LOG_DIR } from '@core/constants/path.constant'
 import { Logger } from '@nestjs/common'
 
@@ -18,4 +19,6 @@ function mkdirs() {
 
 export function register() {
   mkdirs()
+
+  globalThis.crypto = globalThis.crypto || crypto.webcrypto
 }

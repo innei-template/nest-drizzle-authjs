@@ -1,0 +1,22 @@
+{
+  "name": "@meta-muse/complied",
+  "private": true,
+  "description": "",
+  "type": "module",
+  "license": "MIT",
+  "author": "Innei <https://innei.in>",
+  "main": "dist/index.cjs",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsup"
+  },
+  "devDependencies": {
+    "@auth/core": "0.34.1",
+    "@auth/drizzle-adapter": "1.4.1",
+    "typescript": "^5.5.3"
+  }
+}

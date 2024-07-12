@@ -1,3 +1,4 @@
+import { name } from 'package.json'
 export enum RedisKeys {
   JWTStore = 'jwt_store',
   /** HTTP 请求缓存 */
@@ -13,5 +14,6 @@ export enum RedisKeys {
   Read = 'read',
   Like = 'like',
 }
+export const API_CACHE_PREFIX = `${name}#api:`
 
 export enum CacheKeys {}

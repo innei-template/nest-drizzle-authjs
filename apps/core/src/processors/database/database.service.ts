@@ -1,22 +1,22 @@
-import { inspect } from 'node:util'
-
 import { DATABASE } from '@core/app.config'
 import { createDrizzle, migrateDb } from '@meta-muse/drizzle'
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common'
+import { Injectable, OnModuleInit } from '@nestjs/common'
+// const drizzleLogger = new Logger('')
+
+export const db = createDrizzle(DATABASE.url, {
+  // logger: {
+  //   logQuery(query, params) {
+  //     drizzleLogger.debug(query + inspect(params))
+  //   },
+  // },
+})
 
 @Injectable()
 export class DatabaseService implements OnModuleInit {
   public drizzle: ReturnType<typeof createDrizzle>
 
   constructor() {
-    const drizzleLogger = new Logger('')
-    this.drizzle = createDrizzle(DATABASE.url, {
-      logger: {
-        logQuery(query, params) {
-          drizzleLogger.debug(query + inspect(params))
-        },
-      },
-    })
+    this.drizzle = db
   }
 
   async onModuleInit() {
