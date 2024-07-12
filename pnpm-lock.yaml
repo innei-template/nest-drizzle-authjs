@@ -276,14 +276,13 @@ importers:
         version: 5.5.3
 
   packages/complied:
-    dependencies:
-      '@auth/drizzle-adapter':
-        specifier: 1.4.1
-        version: 1.4.1
     devDependencies:
       '@auth/core':
         specifier: 0.34.1
         version: 0.34.1
+      '@auth/drizzle-adapter':
+        specifier: 1.4.1
+        version: 1.4.1
       typescript:
         specifier: ^5.5.3
         version: 5.5.3
@@ -500,7 +499,6 @@ packages:
       - '@simplewebauthn/browser'
       - '@simplewebauthn/server'
       - nodemailer
-    dev: false
 
   /@babel/code-frame@7.22.5:
     resolution: {integrity: sha512-Xmwn266vad+6DAqEB2A6V/CcZVp62BbwVmcOJc2RPuwih1kw02TjQvWVWlcKGbBPd+8/0V5DEkOcizRGYsspYQ==}
