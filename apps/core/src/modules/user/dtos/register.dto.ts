@@ -1,7 +1,7 @@
 import { createZodDto } from 'nestjs-zod'
 import { z } from 'zod'
 
-import { userSchema, UserSchemaProjection } from '../user.protect'
+import { UserSchemaProjection, userSchema } from '../user.protect'
 
 export class UserRegisterDto extends createZodDto(
   userSchema.omit(UserSchemaProjection).extend({

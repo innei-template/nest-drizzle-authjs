@@ -1,6 +1,6 @@
-import { FastifyRequest } from 'fastify'
+import type { FastifyRequest } from 'fastify'
 
-import { ExecutionContext } from '@nestjs/common'
+import type { ExecutionContext } from '@nestjs/common'
 
 export function getNestExecutionContextRequest(
   context: ExecutionContext,

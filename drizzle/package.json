@@ -1,6 +1,16 @@
 {
   "name": "@meta-muse/drizzle",
   "private": true,
+  "description": "",
+  "license": "MIT",
+  "author": "Innei <https://innei.in>",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "@meta-muse/utils": "workspace:*",
     "drizzle-kit": "0.23.0",
@@ -10,15 +20,5 @@
   },
   "devDependencies": {
     "typescript": "^5.5.3"
-  },
-  "scripts": {
-    "build": "tsc"
-  },
-  "description": "",
-  "author": "Innei <https://innei.in>",
-  "license": "MIT",
-  "main": "./index.js",
-  "exports": {
-    ".": "./index.js"
   }
 }

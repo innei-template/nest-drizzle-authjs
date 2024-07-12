@@ -1,9 +1,9 @@
 import { CacheService } from '@core/processors/cache/cache.service'
-import { ModuleMetadata } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { Test, TestingModule } from '@nestjs/testing'
+import { Test, type TestingModule } from '@nestjs/testing'
 import { mockedEventManagerServiceProvider } from '@test/mock/helper/helper.event'
 import { MockedDatabaseModule } from '@test/mock/processors/database/database.module'
+import type { ModuleMetadata } from '@nestjs/common'
 
 type ClassType<T> = new (...args: any[]) => T
 export const createServiceUnitTestApp = <T>(

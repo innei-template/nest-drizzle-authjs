@@ -1,8 +1,8 @@
-import { AxiosRequestConfig } from 'axios'
 import { argv } from 'zx-cjs'
 
 import { isDev } from './shared/utils/environment.util'
 import { mergeArgv } from './utils/env.util'
+import type { AxiosRequestConfig } from 'axios'
 
 console.log(argv)
 export const PORT = argv.port || 3333
@@ -32,7 +32,7 @@ export const REDIS = {
   httpCacheTTL: 5,
   max: 5,
   disableApiCache:
-    (isDev || argv.disable_cache) && !process.env['ENABLE_CACHE_DEBUG'],
+    (isDev || argv.disable_cache) && !process.env.ENABLE_CACHE_DEBUG,
 }
 export const SECURITY = {
   jwtSecret: argv.jwtSecret || 'asjhczxiucipoiopiqm2376',

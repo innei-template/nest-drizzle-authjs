@@ -1,4 +1,4 @@
-import { hashSync } from 'bcrypt'
+import { hashSync } from 'bcryptjs'
 import { omit } from 'lodash'
 import { nanoid } from 'nanoid'
 import snakecaseKeys from 'snakecase-keys'

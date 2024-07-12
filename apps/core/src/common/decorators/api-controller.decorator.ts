@@ -1,6 +1,10 @@
 import { API_VERSION } from '@core/app.config'
 import { isDev, isTest } from '@core/global/env.global'
-import { applyDecorators, Controller, ControllerOptions } from '@nestjs/common'
+import {
+  Controller,
+  type ControllerOptions,
+  applyDecorators,
+} from '@nestjs/common'
 
 import { Auth } from './auth.decorator'
 

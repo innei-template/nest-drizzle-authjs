@@ -1,26 +1,11 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
-    "declaration": true,
-    "strict": true,
-    "removeComments": true,
+    "incremental": true,
+    "target": "es2022",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2022",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "noEmit": true,
-    "allowJs": true,
     "baseUrl": ".",
-    "noImplicitAny": false,
-    "incremental": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "types": [
-      "vitest/globals"
-    ],
+    "module": "CommonJS",
     "paths": {
       "@core": [
         "../apps/core/src"
@@ -40,7 +25,22 @@
       "@prisma/client/*": [
         "../prisma/*"
       ]
-    }
+    },
+    "resolveJsonModule": true,
+    "types": [
+      "vitest/globals"
+    ],
+    "allowJs": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "declaration": true,
+    "noEmit": true,
+    "outDir": "./dist",
+    "removeComments": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "include": [
     "./src/**/*.ts",

@@ -2,7 +2,7 @@ import { HTTP_IDEMPOTENCE_OPTIONS } from '@core/constants/meta.constant'
 import * as SYSTEM from '@core/constants/system.constant'
 import { SetMetadata } from '@nestjs/common'
 
-import { IdempotenceOption } from '../interceptors/idempotence.interceptor'
+import type { IdempotenceOption } from '../interceptors/idempotence.interceptor'
 
 /**
  * @description 跳过响应体处理

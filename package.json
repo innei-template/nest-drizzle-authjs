@@ -1,34 +1,20 @@
 {
   "name": "nest-drizzle",
-  "description": "",
-  "author": "Innei <https://innei.in>",
-  "type": "module",
   "private": true,
-  "license": "MIT",
   "packageManager": "pnpm@8.7.4",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --ignore-path ./.prettierignore --write ",
-      "eslint --cache --fix"
-    ]
-  },
-  "bump": {
-    "before": [
-      "git pull --rebase"
-    ]
-  },
+  "description": "",
+  "type": "module",
+  "license": "MIT",
+  "author": "Innei <https://innei.in>",
   "scripts": {
     "prepare": "if [ \"$NODE_ENV\" = \"production\" ]; then echo 'skip prepare in production' ;else corepack enable && husky install; fi",
     "prebuild": "rimraf dist",
-    "build": "pnpm -C \"apps/core\" run build",
+    "build:packages": "pnpm -C \"packages/utils\" run build",
+    "build": "npm run build:packages && pnpm -C \"apps/core\" run build",
+    "predev": "npm run build:packages",
     "dev": "pnpm -C \"apps/core\" run start",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "lint": "eslint --fix",
     "test": "pnpm -C \"test\" run test",
     "generate": "drizzle-kit generate:pg",
     "db:generate": "drizzle-kit generate",
@@ -60,10 +46,26 @@
     "typescript": "^5.5.3",
     "zx": "8.1.4"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --ignore-path ./.prettierignore --write ",
+      "eslint --fix"
+    ]
+  },
+  "bump": {
+    "before": [
+      "git pull --rebase"
+    ]
+  },
   "resolutions": {
-    "pino": "./external/pino",
+    "*>lodash": "4.17.21",
     "*>typescript": "^5.2.2",
-    "*>lodash": "4.17.21"
+    "pino": "./external/pino"
   },
   "redisMemoryServer": {
     "downloadDir": "./tmp/redis/binaries",

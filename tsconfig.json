@@ -1,21 +1,11 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
-    "declaration": true,
-    "strictNullChecks": true,
-    "removeComments": true,
+    "incremental": true,
+    "target": "es2021",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2021",
-    "sourceMap": true,
-    "outDir": "./dist",
     "baseUrl": ".",
-    "noImplicitAny": false,
-    "incremental": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
+    "module": "CommonJS",
     "paths": {
       "@core": [
         "./apps/core/src"
@@ -30,6 +20,16 @@
         "./*"
       ],
     },
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "declaration": true,
+    "outDir": "./dist",
+    "removeComments": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
   },
   "exclude": [
     "dist",

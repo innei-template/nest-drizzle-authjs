@@ -1,5 +1,4 @@
-/* eslint-disable import/order */
-import { mkdirSync } from 'fs'
+import { mkdirSync } from 'node:fs'
 
 import { DATA_DIR, LOG_DIR } from '@core/constants/path.constant'
 import { Logger } from '@nestjs/common'

@@ -88,8 +88,8 @@ export class IdempotenceInterceptor implements NestInterceptor {
     const key = disableGenerateKey
       ? undefined
       : options.generateKey
-      ? options.generateKey(request)
-      : this.generateKey(request)
+        ? options.generateKey(request)
+        : this.generateKey(request)
 
     const idempotenceKey =
       !!(idempotence || key) && getRedisKey(`idempotence:${idempotence || key}`)

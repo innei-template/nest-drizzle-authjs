@@ -1,5 +1,6 @@
 import { ApiController } from '@core/common/decorators/api-controller.decorator'
 import { HTTPDecorators } from '@core/common/decorators/http.decorator'
+import { getProjectionKeys } from '@core/shared/utils/schema.util'
 import { Body, HttpCode, Post } from '@nestjs/common'
 import { Throttle } from '@nestjs/throttler'
 
@@ -24,7 +25,7 @@ export class UserController {
     },
   })
   @HttpCode(200)
-  @HTTPDecorators.ProtectKeys(UserSchemaSerializeProjection.keys)
+  @HTTPDecorators.ProtectKeys(getProjectionKeys(UserSchemaSerializeProjection))
   async login(@Body() body: UserLoginDto) {
     const { username, password } = body
     const user = await this.authService.validateUsernameAndPassword(
@@ -40,7 +41,7 @@ export class UserController {
   }
 
   @Post('/register')
-  @HTTPDecorators.ProtectKeys(UserSchemaSerializeProjection.keys)
+  @HTTPDecorators.ProtectKeys(getProjectionKeys(UserSchemaSerializeProjection))
   async register(@Body() body: UserRegisterDto) {
     const newUser = await this.userService.register(body)
 

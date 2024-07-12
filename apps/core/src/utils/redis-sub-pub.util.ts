@@ -1,4 +1,4 @@
-import IORedis, { Redis, RedisOptions } from 'ioredis'
+import IORedis, { type Redis, type RedisOptions } from 'ioredis'
 
 import { REDIS } from '@core/app.config'
 import { Logger } from '@nestjs/common'

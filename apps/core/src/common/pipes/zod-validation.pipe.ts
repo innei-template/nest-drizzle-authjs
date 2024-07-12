@@ -1,7 +1,6 @@
 import { createZodValidationPipe } from 'nestjs-zod'
-import { ZodError } from 'zod'
-
 import { UnprocessableEntityException } from '@nestjs/common'
+import type { ZodError } from 'zod'
 
 export const ZodValidationPipe = createZodValidationPipe({
   createValidationException: (error: ZodError) => {

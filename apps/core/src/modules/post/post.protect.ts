@@ -1,8 +1,8 @@
 import { createInsertSchema } from 'drizzle-zod'
-import { z } from 'zod'
 
 import { createProjectionOmit } from '@core/shared/utils/schema.util'
 import { schema } from '@meta-muse/drizzle'
+import type { z } from 'zod'
 
 export const postInputSchema = createInsertSchema(schema.post)
 

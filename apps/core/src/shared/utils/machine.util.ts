@@ -1,21 +1,18 @@
 /* eslint-disable no-prototype-builtins */
-import { exec, execSync } from 'child_process'
-import { createHash } from 'crypto'
+import { exec, execSync } from 'node:child_process'
+import { createHash } from 'node:crypto'
 
 const { platform }: NodeJS.Process = process
 const win32RegBinPath: Record<string, string> = {
-  native: '%windir%\\System32',
-  mixed: '%windir%\\sysnative\\cmd.exe /c %windir%\\System32',
+  native: String.raw`%windir%\System32`,
+  mixed: String.raw`%windir%\sysnative\cmd.exe /c %windir%\System32`,
 }
 
 const guid: Record<string, string> = {
   darwin: 'ioreg -rd1 -c IOPlatformExpertDevice',
-  win32:
-    `${
-      win32RegBinPath[isWindowsProcessMixedOrNativeArchitecture()]
-    }\\REG.exe ` +
-    'QUERY HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography ' +
-    '/v MachineGuid',
+  win32: `${
+    win32RegBinPath[isWindowsProcessMixedOrNativeArchitecture()]
+  }\\REG.exe ${String.raw`QUERY HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography `}/v MachineGuid`,
   linux:
     '( cat /var/lib/dbus/machine-id /etc/machine-id 2> /dev/null || hostname ) | head -n 1 || :',
   freebsd: 'kenv -q smbios.system.uuid || sysctl -n kern.hostuuid',
@@ -46,23 +43,23 @@ function expose(result: string): string {
       return result
         .split('IOPlatformUUID')[1]
         .split('\n')[0]
-        .replace(/=|\s+|"/gi, '')
+        .replaceAll(/=|\s+|"/gi, '')
         .toLowerCase()
     case 'win32':
       return result
         .toString()
         .split('REG_SZ')[1]
-        .replace(/\r+|\n+|\s+/gi, '')
+        .replaceAll(/\r+|\n+|\s+/gi, '')
         .toLowerCase()
     case 'linux':
       return result
         .toString()
-        .replace(/\r+|\n+|\s+/gi, '')
+        .replaceAll(/\r+|\n+|\s+/gi, '')
         .toLowerCase()
     case 'freebsd':
       return result
         .toString()
-        .replace(/\r+|\n+|\s+/gi, '')
+        .replaceAll(/\r+|\n+|\s+/gi, '')
         .toLowerCase()
     default:
       throw new Error(`Unsupported platform: ${process.platform}`)
@@ -76,7 +73,7 @@ export function machineIdSync(original?: boolean): string {
 
 export function machineId(original?: boolean): Promise<string> {
   return new Promise((resolve, reject) => {
-    return exec(guid[platform], {}, (err, stdout, stderr) => {
+    return exec(guid[platform], {}, (err, stdout) => {
       if (err) {
         return reject(
           new Error(`Error while obtaining machine id: ${err.stack}`),

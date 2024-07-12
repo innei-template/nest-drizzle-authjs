@@ -1,10 +1,10 @@
-import { compareSync, hashSync } from 'bcrypt'
-import { nanoid } from 'nanoid'
+import { compareSync, hashSync } from 'bcryptjs'
 
 import { BizException } from '@core/common/exceptions/biz.exception'
 import { ErrorCodeEnum } from '@core/constants/error-code.constant'
 import { DatabaseService } from '@core/processors/database/database.service'
-import { eq, InferInsertModel, schema } from '@meta-muse/drizzle'
+import { InferInsertModel, eq, schema } from '@meta-muse/drizzle'
+import { nanoid } from '@meta-muse/utils'
 import {
   Injectable,
   Logger,
@@ -14,9 +14,9 @@ import {
 import { AuthService } from '../auth/auth.service'
 import { UserRegisterDto } from './dtos/register.dto'
 import {
-  userSchema,
   UserSchemaProjection,
   UserSchemaSerializeProjection,
+  userSchema,
 } from './user.protect'
 
 @Injectable()

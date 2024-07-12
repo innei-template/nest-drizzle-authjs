@@ -1,7 +1,6 @@
-import { FastifyRequest } from 'fastify'
-
 import { getIp } from '@core/shared/utils/ip.util'
-import { createParamDecorator, ExecutionContext } from '@nestjs/common'
+import { type ExecutionContext, createParamDecorator } from '@nestjs/common'
+import type { FastifyRequest } from 'fastify'
 
 export type IpRecord = {
   ip: string

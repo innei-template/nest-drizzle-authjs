@@ -5,7 +5,7 @@ import { z } from 'zod'
 import { basePagerSchema } from '@core/shared/dto/pager.dto'
 import { makeOptionalPropsNullable } from '@core/shared/utils/zod.util'
 
-import { postInputSchema, PostSchemaProjection } from './post.protect'
+import { PostSchemaProjection, postInputSchema } from './post.protect'
 
 const PostInputSchema = postInputSchema
   .extend({

@@ -1,4 +1,4 @@
-import { Mock, vi } from 'vitest'
+import { type Mock, vi } from 'vitest'
 
 import { EventManagerService } from '@core/processors/helper/helper.event.service'
 import { defineProvider } from '@test/helper/defineProvider'

@@ -27,8 +27,8 @@ export class SpiderGuard implements CanActivate {
     const headers = request.headers
     const ua: string = headers['user-agent'] || ''
     const isSpiderUA =
-      !!ua.match(/(Scrapy|HttpClient|axios|python|requests)/i) &&
-      !ua.match(/(mx-space|rss|google|baidu|bing)/gi)
+      !!/(scrapy|httpclient|axios|python|requests)/i.test(ua) &&
+      !/(mx-space|rss|google|baidu|bing)/gi.test(ua)
     if (ua && !isSpiderUA) {
       return true
     }

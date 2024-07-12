@@ -2,7 +2,6 @@ import chalk from 'chalk'
 import { Logger } from 'nestjs-pretty-logger'
 
 import { NestFactory } from '@nestjs/core'
-import { NestFastifyApplication } from '@nestjs/platform-fastify'
 
 import { CROSS_DOMAIN, PORT } from './app.config'
 import { AppModule } from './app.module'
@@ -11,6 +10,7 @@ import { SpiderGuard } from './common/guards/spider.guard'
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor'
 import { consola, logger } from './global/consola.global'
 import { isDev } from './shared/utils/environment.util'
+import type { NestFastifyApplication } from '@nestjs/platform-fastify'
 
 // const APIVersion = 1
 const Origin = CROSS_DOMAIN.allowedOrigins

@@ -115,6 +115,8 @@ export class EventManagerService {
         } else if (instance instanceof BroadcastBaseGateway) {
           return instance.broadcast(event as any, data)
         }
+
+        return null
       }),
     )
 
@@ -164,7 +166,7 @@ export class EventManagerService {
   registerHandler(handler: Function) {
     this.#handlers.push(handler as any)
     return () => {
-      const index = this.#handlers.findIndex((h) => h === handler)
+      const index = this.#handlers.indexOf(handler)
       this.#handlers.splice(index, 1)
     }
   }

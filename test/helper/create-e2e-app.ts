@@ -3,15 +3,15 @@ import { JSONTransformerInterceptor } from '@core/common/interceptors/json-trans
 import { ResponseInterceptor } from '@core/common/interceptors/response.interceptor'
 import { AuthModule } from '@core/modules/auth/auth.module'
 import { UserModule } from '@core/modules/user/user.module'
-import { ModuleMetadata } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core'
-import { NestFastifyApplication } from '@nestjs/platform-fastify'
 import { MockedHelperModule } from '@test/mock/helper/helper.module'
 import { MockedDatabaseModule } from '@test/mock/processors/database/database.module'
 
 import { redisHelper } from './redis-mock.helper'
 import { setupE2EApp } from './setup-e2e'
+import type { NestFastifyApplication } from '@nestjs/platform-fastify'
+import type { ModuleMetadata } from '@nestjs/common'
 
 export const createE2EApp = (module: ModuleMetadata) => {
   const proxy: {

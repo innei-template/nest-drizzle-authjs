@@ -1,11 +1,10 @@
-import { FastifyReply, FastifyRequest } from 'fastify'
-
 import {
-  CallHandler,
-  ExecutionContext,
-  NestInterceptor,
+  type CallHandler,
+  type ExecutionContext,
+  type NestInterceptor,
   RequestMethod,
 } from '@nestjs/common'
+import type { FastifyReply, FastifyRequest } from 'fastify'
 
 declare module 'fastify' {
   // @ts-ignore

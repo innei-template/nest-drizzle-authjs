@@ -1,17 +1,23 @@
 {
   "name": "@meta-muse/utils",
   "private": true,
-  "devDependencies": {
-    "typescript": "^5.5.3"
+  "description": "",
+  "type": "module",
+  "license": "MIT",
+  "author": "Innei <https://innei.in>",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsup"
   },
-  "description": "",
-  "author": "Innei <https://innei.in>",
-  "license": "MIT",
-  "main": "./dist/index.js",
-  "exports": {
-    ".": "./dist/index.js"
+  "devDependencies": {
+    "nanoid": "5.0.7",
+    "typescript": "^5.5.3"
   }
 }

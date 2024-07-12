@@ -1,5 +1,5 @@
-import { performance } from 'perf_hooks'
-import { inspect } from 'util'
+import { performance } from 'node:perf_hooks'
+import { inspect } from 'node:util'
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 import chalk from 'chalk'
 
@@ -102,7 +102,6 @@ data: ${this.prettyStringify(req.data)}`,
         res.config.__requestEndedAt = endAt
         res.config.__requestDuration =
           res.config?.__requestStartedAt ??
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           endAt - res.config!.__requestStartedAt!
         this.logger.log(
           `HTTP Response ${`${res.config.baseURL || ''}${

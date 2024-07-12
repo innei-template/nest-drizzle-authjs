@@ -22,7 +22,6 @@ export class RolesGuard extends AuthGuard implements CanActivate {
     try {
       await super.canActivate(context)
       isMaster = true
-      // eslint-disable-next-line no-empty
     } catch {}
 
     request.isGuest = !isMaster

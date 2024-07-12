@@ -1,12 +1,12 @@
-import { compareSync } from 'bcrypt'
+import { compareSync } from 'bcryptjs'
 import dayjs from 'dayjs'
 import { isDate } from 'lodash'
-import { nanoid } from 'nanoid'
 
 import { BizException } from '@core/common/exceptions/biz.exception'
 import { ErrorCodeEnum } from '@core/constants/error-code.constant'
 import { DatabaseService } from '@core/processors/database/database.service'
 import { sleep } from '@core/shared/utils/tool.utils'
+import { nanoid } from '@meta-muse/utils'
 import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 

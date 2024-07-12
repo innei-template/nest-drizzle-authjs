@@ -1,5 +1,5 @@
-import fs, { WriteStream } from 'fs'
-import { resolve } from 'path'
+import fs, { WriteStream } from 'node:fs'
+import { resolve } from 'node:path'
 import chalk from 'chalk'
 import { FastifyReply, FastifyRequest } from 'fastify'
 
@@ -92,7 +92,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       const content = `${request.method} -> ${request.url}`
       Logger.debug(
         `--- ResponseError：${content}${chalk.yellow(
-          ` +${+new Date() - prevRequestTs}ms`,
+          ` +${Date.now() - prevRequestTs}ms`,
         )}`,
         LoggingInterceptor.name,
       )

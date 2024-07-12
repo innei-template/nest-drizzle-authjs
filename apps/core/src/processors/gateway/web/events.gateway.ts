@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import SocketIO from 'socket.io'
 
 import { BusinessEvents } from '@core/constants/business-event.constant'

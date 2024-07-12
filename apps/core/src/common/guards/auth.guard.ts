@@ -14,9 +14,9 @@ function isJWT(token: string): boolean {
   const parts = token.split('.')
   return (
     parts.length === 3 &&
-    /^[a-zA-Z0-9_-]+$/.test(parts[0]) &&
-    /^[a-zA-Z0-9_-]+$/.test(parts[1]) &&
-    /^[a-zA-Z0-9_-]+$/.test(parts[2])
+    /^[\w-]+$/.test(parts[0]) &&
+    /^[\w-]+$/.test(parts[1]) &&
+    /^[\w-]+$/.test(parts[2])
   )
 }
 

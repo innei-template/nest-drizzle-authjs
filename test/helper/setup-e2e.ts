@@ -4,10 +4,10 @@ import { ResponseInterceptor } from '@core/common/interceptors/response.intercep
 import { ZodValidationPipe } from '@core/common/pipes/zod-validation.pipe'
 import { LoggerModule } from '@core/processors/logger/logger.module'
 import { MyLogger } from '@core/processors/logger/logger.service'
-import { ModuleMetadata } from '@nestjs/common'
 import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core'
-import { NestFastifyApplication } from '@nestjs/platform-fastify'
 import { Test } from '@nestjs/testing'
+import type { ModuleMetadata } from '@nestjs/common'
+import type { NestFastifyApplication } from '@nestjs/platform-fastify'
 
 const interceptorProviders = [JSONTransformerInterceptor, ResponseInterceptor]
 export const setupE2EApp = async (module: ModuleMetadata) => {

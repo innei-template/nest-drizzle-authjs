@@ -1,4 +1,5 @@
-type DefaultKeys = 'id' | 'created' | 'modified' | 'deleted'
+// type DefaultKeys = 'id' | 'created' | 'modified' | 'deleted'
+type DefaultKeys = 'id'
 const defaultProjectKeys = ['id', 'created', 'modified', 'deleted'] as const
 
 type Projection<K extends string | number | symbol> = {
@@ -9,11 +10,11 @@ export function createProjectionOmit<T extends object, K extends keyof T>(
   obj: T,
   keys: K[],
   withDefaults: true,
-): Projection<K | DefaultKeys> & { keys: (K | DefaultKeys)[] }
+): Projection<K | DefaultKeys>
 export function createProjectionOmit<T extends object, K extends keyof T>(
   obj: T,
   keys: K[],
-): Projection<K> & { keys: K[] }
+): Projection<K>
 
 export function createProjectionOmit<T extends object, K extends keyof T>(
   obj: T,
@@ -37,4 +38,9 @@ export function createProjectionOmit<T extends object, K extends keyof T>(
   // @ts-ignore
   projection.keys = [...keys, ...(withDefaults ? defaultProjectKeys : [])]
   return projection as any
+}
+
+export const getProjectionKeys = (projection: Projection<any>): string[] => {
+  // @ts-expect-error
+  return projection.keys
 }

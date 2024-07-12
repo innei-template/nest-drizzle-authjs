@@ -97,7 +97,7 @@ function getWorkerAndDatacenterId(): [number, number] {
   const ip = addresses[0]
 
   // 将 IP 地址转换为一个数字，然后提取低 5 位作为 workerId，高 5 位作为 datacenterId
-  const ipParts = ip.split('.').map((part) => parseInt(part, 10))
+  const ipParts = ip.split('.').map((part) => Number.parseInt(part, 10))
   const ipNumber =
     (ipParts[0] << 24) + (ipParts[1] << 16) + (ipParts[2] << 8) + ipParts[3]
   const workerId = ipNumber & 0x1f // 取低 5 位

@@ -1,4 +1,4 @@
-import cluster from 'cluster'
+import cluster from 'node:cluster'
 import { sign, verify } from 'jsonwebtoken'
 
 import { CLUSTER, ENCRYPT, SECURITY } from '@core/app.config'
@@ -47,8 +47,8 @@ export class JWTService {
     try {
       verify(token, this.secret)
       return await this.isTokenInRedis(token)
-    } catch (er) {
-      console.debug(er, token)
+    } catch (error) {
+      console.debug(error, token)
 
       return false
     }

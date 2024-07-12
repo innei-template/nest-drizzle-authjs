@@ -1,10 +1,10 @@
-import { resolve } from 'path'
-import { DrizzleConfig } from 'drizzle-orm'
+import { resolve } from 'node:path'
 import { drizzle } from 'drizzle-orm/postgres-js'
 import { migrate } from 'drizzle-orm/postgres-js/migrator'
 import postgres from 'postgres'
 
 import * as schema from './schema'
+import type { DrizzleConfig } from 'drizzle-orm'
 
 export const createDrizzle = (
   url: string,
