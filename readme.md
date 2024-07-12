@@ -8,7 +8,7 @@ Clone this project. Install the dependencies using pnpm. Copy the example enviro
 
 ```sh
 git clone https://github.com/innei-template/nest-drizzle.git
-cp .env.example .env
+cp .env.template .env
 pnpm i
 ```
 
