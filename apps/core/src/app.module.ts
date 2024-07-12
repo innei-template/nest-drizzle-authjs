@@ -23,6 +23,7 @@ import { DatabaseModule } from './processors/database/database.module'
 import { GatewayModule } from './processors/gateway/gateway.module'
 import { HelperModule } from './processors/helper/helper.module'
 import { RequestContextMiddleware } from './common/middlewares/request-context.middleware'
+import { UserModule } from './modules/user/user.module'
 
 // Request ----->
 // Response <-----
@@ -44,6 +45,7 @@ const appInterceptors: Type<any>[] = [
 
     // BIZ
     AuthModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [

@@ -19,6 +19,11 @@ const {
 export const authConfig: FastifyAuthConfig = {
   basePath: isDev ? '/auth' : `/api/v${API_VERSION}/auth`,
   secret: AUTH.secret,
+  callbacks: {
+    redirect({ url }) {
+      return url
+    },
+  },
   providers: [
     GitHub({
       clientId: AUTH.github.clientId,

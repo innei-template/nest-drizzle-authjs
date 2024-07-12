@@ -39,8 +39,6 @@ export async function getSessionBase(
 
   if (!data || !Object.keys(data).length) return null
   if (status === 200) return data
-  // throw new UnauthorizedException(data.message)
-  // throw new BizException(ErrorCodeEnum.AuthFail)
 }
 
 function getBasePath() {

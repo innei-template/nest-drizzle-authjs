@@ -57,12 +57,18 @@ export class RequestContext {
 
   static currentSession() {
     const requestContext = RequestContext.currentRequestContext()
-
-    if (requestContext) {
-      return requestContext.request['session']
+    const session = requestContext?.request['session']
+    if (!session) {
+      throw new UnauthorizedException()
     }
-
-    return null
+    return session as {
+      expires: string
+      user: {
+        name: string
+        email: string
+        image: string
+      }
+    }
   }
 
   static currentIsAuthenticated() {

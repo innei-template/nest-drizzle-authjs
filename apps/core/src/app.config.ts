@@ -1,7 +1,6 @@
 import { argv } from 'zx-cjs'
 
 import { parseBooleanishValue } from './constants/parser.utilt'
-import { isDev } from './shared/utils/environment.util'
 import { machineIdSync } from './shared/utils/machine.util'
 import { mergeArgv } from './utils/env.util'
 import type { AxiosRequestConfig } from 'axios'
@@ -33,10 +32,15 @@ export const REDIS = {
   port: mergeArgv('redis_port') || 6379,
   password: mergeArgv('redis_password') || null,
   ttl: null,
-  httpCacheTTL: 5,
   max: 5,
-  disableApiCache:
-    (isDev || mergeArgv('disable_cache')) && mergeArgv('enable_cache_debug'),
+}
+
+export const HTTP_CACHE = {
+  ttl: 15, // s
+  enableCDNHeader:
+    parseBooleanishValue(argv.http_cache_enable_cdn_header) ?? true, // s-maxage
+  enableForceCacheHeader:
+    parseBooleanishValue(argv.http_cache_enable_force_cache_header) ?? false, // cache-control: max-age
 }
 
 export const DATABASE = {

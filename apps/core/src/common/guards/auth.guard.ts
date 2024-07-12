@@ -1,7 +1,13 @@
+/* eslint-disable dot-notation */
 import { isTest } from '@core/global/env.global'
-import { getSession } from '@core/modules/auth/auth.util'
+import { getSessionUser } from '@core/modules/auth/auth.util'
 import { getNestExecutionContextRequest } from '@core/transformers/get-req.transformer'
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common'
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -11,10 +17,15 @@ export class AuthGuard implements CanActivate {
     }
 
     const req = this.getRequest(context)
-    const session = await getSession(req)
+    const session = await getSessionUser(req)
 
-    req.session = session
-    req.isAuthenticated = !!session
+    req.raw['session'] = session
+    req.raw['isAuthenticated'] = !!session
+
+    if (!session) {
+      throw new UnauthorizedException()
+    }
+
     return !!session
   }
 
