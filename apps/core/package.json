@@ -18,6 +18,7 @@
     "prod:debug": "cross-env NODE_ENV=production nest start --debug --watch"
   },
   "dependencies": {
+    "@auth/drizzle-adapter": "1.4.1",
     "@meta-muse/complied": "workspace:*",
     "@meta-muse/drizzle": "workspace:*",
     "@meta-muse/utils": "workspace:*",
@@ -40,6 +41,7 @@
     "cache-manager": "5.7.2",
     "cache-manager-ioredis": "2.1.0",
     "chalk": "^4",
+    "cls-hooked": "4.2.2",
     "consola": "^3.2.3",
     "cron": "^3.1.7",
     "cross-env": "7.0.3",

@@ -21,3 +21,7 @@ export type * from '@auth/core/types'
 export type * from '@auth/core/providers/google'
 export type * from '@auth/core/providers/github'
 export * from '@auth/core'
+
+export type * from '@auth/core/adapters'
+
+export { DrizzleAdapter } from '@auth/drizzle-adapter'

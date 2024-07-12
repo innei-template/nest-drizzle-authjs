@@ -1,14 +1,23 @@
-import { authjs } from '@meta-muse/complied'
+import { DrizzleAdapter, authjs } from '@meta-muse/complied'
 import { isDev } from '@core/global/env.global'
 import { API_VERSION, AUTH } from '@core/app.config'
-import { CreateAuth } from './auth.util'
+
+import { db } from '@core/processors/database/database.service'
+import {
+  accounts,
+  authenticators,
+  sessions,
+  users,
+  verificationTokens,
+} from '@meta-muse/drizzle/schema'
+import { CreateAuth, type FastifyAuthConfig } from './auth.implement'
 
 const {
   providers: { github: GitHub },
 } = authjs
 
-export const authHandler = CreateAuth({
-  basePath: isDev ? 'auth' : `/api/v${API_VERSION}/auth`,
+export const authConfig: FastifyAuthConfig = {
+  basePath: isDev ? '/auth' : `/api/v${API_VERSION}/auth`,
   secret: AUTH.secret,
   providers: [
     GitHub({
@@ -16,4 +25,12 @@ export const authHandler = CreateAuth({
       clientSecret: AUTH.github.clientSecret,
     }),
   ],
-})
+  adapter: DrizzleAdapter(db, {
+    usersTable: users,
+    accountsTable: accounts,
+    sessionsTable: sessions,
+    verificationTokensTable: verificationTokens,
+    authenticatorsTable: authenticators,
+  }),
+}
+export const authHandler = CreateAuth(authConfig)

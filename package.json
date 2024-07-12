@@ -16,7 +16,6 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint --fix",
     "test": "pnpm -C \"test\" run test",
-    "generate": "drizzle-kit generate:pg",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"
