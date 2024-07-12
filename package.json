@@ -9,7 +9,7 @@
   "scripts": {
     "prepare": "if [ \"$NODE_ENV\" = \"production\" ]; then echo 'skip prepare in production' ;else corepack enable && husky install; fi",
     "prebuild": "rimraf dist",
-    "build:packages": "pnpm -C \"packages/utils\" run build && pnpm -C \"drizzle\" run build",
+    "build:packages": "pnpm -C \"packages/utils\" run build && pnpm -C \"packages/complied\" run build && pnpm -C \"drizzle\" run build",
     "build": "npm run build:packages && pnpm -C \"apps/core\" run build",
     "predev": "npm run build:packages",
     "dev": "pnpm -C \"apps/core\" run start",

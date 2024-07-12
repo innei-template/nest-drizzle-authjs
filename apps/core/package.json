@@ -18,7 +18,7 @@
     "prod:debug": "cross-env NODE_ENV=production nest start --debug --watch"
   },
   "dependencies": {
-    "@auth/core": "0.34.1",
+    "@meta-muse/complied": "workspace:*",
     "@meta-muse/drizzle": "workspace:*",
     "@meta-muse/utils": "workspace:*",
     "@nestjs/cache-manager": "2.2.2",

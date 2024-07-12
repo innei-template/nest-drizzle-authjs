@@ -1,24 +1,6 @@
 import { isTest } from '@core/global/env.global'
-import { AuthService } from '@core/modules/auth/auth.service'
-import { UserService } from '@core/modules/user/user.service'
 import { getNestExecutionContextRequest } from '@core/transformers/get-req.transformer'
-import {
-  CanActivate,
-  ExecutionContext,
-  Inject,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common'
-
-function isJWT(token: string): boolean {
-  const parts = token.split('.')
-  return (
-    parts.length === 3 &&
-    /^[\w-]+$/.test(parts[0]) &&
-    /^[\w-]+$/.test(parts[1]) &&
-    /^[\w-]+$/.test(parts[2])
-  )
-}
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
 
 /**
  * JWT auth guard
@@ -26,51 +8,11 @@ function isJWT(token: string): boolean {
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  @Inject(AuthService)
-  private authService: AuthService
-
-  @Inject(UserService)
-  private userService: UserService
-
-  async canActivate(context: ExecutionContext): Promise<any> {
+  async canActivate(_context: ExecutionContext): Promise<any> {
     if (isTest) {
       return true
     }
-    const request = this.getRequest(context)
 
-    const query = request.query as any
-    const headers = request.headers
-    const Authorization: string =
-      headers.authorization || headers.Authorization || query.token
-
-    if (!Authorization) {
-      throw new UnauthorizedException('未登录')
-    }
-
-    if (this.authService.isCustomToken(Authorization)) {
-      const isValid = await this.authService.verifyCustomToken(Authorization)
-      if (!isValid) {
-        throw new UnauthorizedException('令牌无效')
-      }
-      const owner = await this.userService.getOwner()
-      request.owner = owner
-      request.token = Authorization
-      return true
-    }
-
-    const jwt = Authorization.replace(/[Bb]earer /, '')
-
-    if (!isJWT(jwt)) {
-      throw new UnauthorizedException('令牌无效')
-    }
-    const ok = await this.authService.jwtServicePublic.verify(jwt)
-    if (!ok) {
-      throw new UnauthorizedException('身份过期')
-    }
-
-    const owner = await this.userService.getOwner()
-    request.owner = owner
-    request.token = jwt
     return true
   }
 

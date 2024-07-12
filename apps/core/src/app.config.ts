@@ -64,3 +64,11 @@ export const ENCRYPT = {
     : false,
   algorithm: mergeArgv('encrypt_algorithm') || 'aes-256-ecb',
 }
+
+export const AUTH = {
+  github: {
+    clientId: mergeArgv('github_client_id'),
+    clientSecret: mergeArgv('github_client_secret'),
+  },
+  secret: mergeArgv('auth_secret'),
+}
