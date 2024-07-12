@@ -54,7 +54,7 @@ jobs:
       - name: Run Test
         run: |
           pnpm run lint
-          pnpm run pretest
+          pnpm run predev
           pnpm run test
         env:
           CI: true
