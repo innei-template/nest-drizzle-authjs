@@ -2,7 +2,7 @@
   "name": "@meta-muse/utils",
   "private": true,
   "devDependencies": {
-    "typescript": "^5.3.3"
+    "typescript": "^5.5.3"
   },
   "scripts": {
     "build": "tsc"
