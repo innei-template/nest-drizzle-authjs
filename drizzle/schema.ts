@@ -7,12 +7,13 @@ import {
   timestamp,
 } from 'drizzle-orm/pg-core'
 
+import { snowflake } from '@meta-muse/utils/snowflake'
 import type { AdapterAccountType } from '@meta-muse/complied'
 
 export const users = pgTable('user', {
   id: text('id')
     .primaryKey()
-    .$defaultFn(() => crypto.randomUUID()),
+    .$defaultFn(() => snowflake.nextId().toString()),
   name: text('name'),
   email: text('email').notNull(),
   emailVerified: timestamp('emailVerified', { mode: 'date' }),

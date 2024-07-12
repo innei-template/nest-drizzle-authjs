@@ -20,5 +20,8 @@ function mkdirs() {
 export function register() {
   mkdirs()
 
-  globalThis.crypto = globalThis.crypto || crypto.webcrypto
+  if (!globalThis.crypto)
+    // @ts-expect-error
+    // Compatibility with node 18
+    globalThis.crypto = crypto.webcrypto
 }

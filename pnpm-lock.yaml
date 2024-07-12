@@ -292,6 +292,9 @@ importers:
 
   packages/utils:
     devDependencies:
+      es-toolkit:
+        specifier: ^1.9.0
+        version: 1.9.0
       nanoid:
         specifier: 5.0.7
         version: 5.0.7
@@ -4361,6 +4364,10 @@ packages:
 
   /es-module-lexer@1.5.4:
     resolution: {integrity: sha512-MVNK56NiMrOwitFB7cqDwq0CQutbw+0BvLshJSse0MUNU+y1FC3bUS/AQg7oUng+/wKrrki7JfmwtVHkVfPLlw==}
+    dev: true
+
+  /es-toolkit@1.9.0:
+    resolution: {integrity: sha512-oEoRaHWf69C58rZFOvhMJ1WJ7IpSkLhcBAzfH6fQfHBCqwC7hQMPknUBGc81D6IdvIrm4QMfuOUgpFVAjPCthA==}
     dev: true
 
   /esbuild-register@3.5.0(esbuild@0.19.12):

@@ -1,2 +1,2 @@
 export * from './snowflake'
-export * from './nanoid'
+export * from './id'

@@ -11,12 +11,25 @@
     ".": {
       "require": "./dist/index.cjs",
       "import": "./dist/index.js"
+    },
+    "./_": {
+      "require": "./dist/_.cjs",
+      "import": "./dist/_.js"
+    },
+    "./snowflake": {
+      "require": "./dist/snowflake.cjs",
+      "import": "./dist/snowflake.js"
+    },
+    "./nanoid": {
+      "require": "./dist/nanoid.cjs",
+      "import": "./dist/nanoid.js"
     }
   },
   "scripts": {
     "build": "tsup"
   },
   "devDependencies": {
+    "es-toolkit": "^1.9.0",
     "nanoid": "5.0.7",
     "typescript": "^5.5.3"
   }
