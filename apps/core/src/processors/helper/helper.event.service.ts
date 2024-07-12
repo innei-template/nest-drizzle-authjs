@@ -163,7 +163,7 @@ export class EventManagerService {
   registerHandler(
     handler: (type: BusinessEvents, data: any) => void,
   ): IEventManagerHandlerDisposer
-  registerHandler(handler: Function) {
+  registerHandler(handler: any) {
     this.#handlers.push(handler as any)
     return () => {
       const index = this.#handlers.indexOf(handler)
