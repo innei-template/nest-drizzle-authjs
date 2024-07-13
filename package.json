@@ -7,15 +7,16 @@
   "license": "MIT",
   "author": "Innei <https://innei.in>",
   "scripts": {
-    "prepare": "if [ \"$NODE_ENV\" = \"production\" ]; then echo 'skip prepare in production' ;else corepack enable && husky install; fi",
+    "prepare": "if [ \"$NODE_ENV\" = \"production\" ]; then echo 'skip prepare in production' ;else corepack enable && simple-git-hooks; fi",
     "prebuild": "rimraf dist",
     "build:packages": "sh ./scripts/pre-build.sh",
     "build": "npm run build:packages && pnpm -C \"apps/core\" run build",
     "predev": "npm run build:packages",
     "pretest": "npm run predev",
     "dev": "pnpm -C \"apps/core\" run start",
+    "dev:web": "pnpm -C \"apps/web\" run dev",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "lint": "eslint --fix",
+    "lint": "biome lint --apply src/**/*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json} --no-errors-on-unmatched",
     "test": "pnpm -C \"test\" run test",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
@@ -26,20 +27,20 @@
     "lodash": "4.17.21"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.8.3",
     "@innei/bump-version": "^1.5.10",
     "@innei/prettier": "^0.13.2",
     "@nestjs/cli": "10.4.2",
     "@nestjs/schematics": "10.1.2",
-    "@sxzz/eslint-config": "3.13.0",
     "concurrently": "8.2.2",
     "dotenv-cli": "7.4.2",
     "drizzle-kit": "0.23.0",
-    "eslint": "^9.6.0",
     "fastify": "^4.28.1",
     "husky": "9.0.11",
     "lint-staged": "15.2.7",
     "prettier": "3.3.2",
     "rimraf": "6.0.1",
+    "simple-git-hooks": "2.11.1",
     "ts-loader": "9.5.1",
     "tsconfig-paths": "4.2.0",
     "tsup": "8.1.0",
@@ -47,15 +48,15 @@
     "typescript": "^5.5.3",
     "zx": "8.1.4"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "prettier --ignore-path ./.prettierignore --write ",
-      "eslint --fix"
+      "prettier --ignore-path ./.prettierignore --write "
+    ],
+    "*.{js,ts,cjs,mjs,jsx,tsx,json}": [
+      "biome lint --apply --no-errors-on-unmatched"
     ]
   },
   "bump": {

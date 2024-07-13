@@ -7,7 +7,7 @@ import type { AxiosRequestConfig } from 'axios'
 
 export const API_VERSION = 1
 
-console.log(argv)
+console.info(argv)
 
 export const PORT = mergeArgv('port') || 3333
 
@@ -19,6 +19,7 @@ export const CROSS_DOMAIN = {
     'localhost:2323',
     'localhost:3000',
     'localhost:3333',
+    'localhost:5173',
     '127.0.0.1',
     'mbp.cc',
     'local.innei.test',

@@ -77,17 +77,6 @@
     "ioredis": "^5.4.1",
     "zx": "8.1.4"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --ignore-path ./.prettierignore --write ",
-      "eslint --cache --fix"
-    ]
-  },
   "bump": {
     "before": [
       "git pull --rebase"
