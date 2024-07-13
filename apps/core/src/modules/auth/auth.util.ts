@@ -1,6 +1,6 @@
 /* eslint-disable no-async-promise-executor */
 import { authConfig } from './auth.config'
-import { getSessionBase } from './auth.implement'
+import { getSessionBase } from './auth.implement.deprated'
 import type { users } from '@meta-muse/drizzle/schema'
 import type { Session } from '@meta-muse/complied'
 import type { FastifyRequest } from 'fastify'
@@ -15,8 +15,8 @@ export interface SessionUser {
   user: typeof users.$inferSelect
 }
 export const getSessionUser = (req: FastifyRequest) => {
-  return new Promise<SessionUser | null>(async (resolve) => {
-    const session = await getSessionBase(req, {
+  return new Promise<SessionUser | null>((resolve) => {
+    getSessionBase(req, {
       ...authConfig,
       callbacks: {
         ...authConfig.callbacks,
@@ -29,10 +29,10 @@ export const getSessionUser = (req: FastifyRequest) => {
           return { user, ...session } satisfies Session
         },
       },
+    }).then((session) => {
+      if (!session) {
+        resolve(null)
+      }
     })
-
-    if (!session) {
-      resolve(null)
-    }
   })
 }

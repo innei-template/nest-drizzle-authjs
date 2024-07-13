@@ -1,13 +1,22 @@
-import { Global, Module } from '@nestjs/common'
+import {
+  Global,
+  Module,
+  type MiddlewareConsumer,
+  type NestModule,
+} from '@nestjs/common'
 
 import { AuthService } from './auth.service'
-import { AuthController } from './auth.controller'
+import { AuthMiddleware } from './auth.middleware'
 
 @Module({
   imports: [],
-  controllers: [AuthController],
+  controllers: [],
   providers: [AuthService],
   exports: [],
 })
 @Global()
-export class AuthModule {}
+export class AuthModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(AuthMiddleware).forRoutes('/auth/(.*)')
+  }
+}

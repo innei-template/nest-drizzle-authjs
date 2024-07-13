@@ -10,13 +10,13 @@ import {
   users,
   verificationTokens,
 } from '@meta-muse/drizzle/schema'
-import { CreateAuth, type FastifyAuthConfig } from './auth.implement'
+import { CreateAuth, type ServerAuthConfig } from './auth.implement'
 
 const {
   providers: { github: GitHub },
 } = authjs
 
-export const authConfig: FastifyAuthConfig = {
+export const authConfig: ServerAuthConfig = {
   basePath: isDev ? '/auth' : `/api/v${API_VERSION}/auth`,
   secret: AUTH.secret,
   callbacks: {

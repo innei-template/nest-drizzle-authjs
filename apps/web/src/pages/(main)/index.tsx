@@ -1,18 +1,22 @@
 import { StyledButton } from '~/components/ui'
 import { useSession } from '~/hooks/biz/useSession'
-import { signIn } from '~/lib/auth'
+import { signIn, signOut } from '~/lib/auth'
 
 export const Component = () => {
-  const data = useSession()
+  const session = useSession()
   return (
     <div>
-      {!!data && <pre>{JSON.stringify(data, null, 2)}</pre>}
+      {!!session && <pre>{JSON.stringify(session, null, 2)}</pre>}
       <StyledButton
         onClick={() => {
-          signIn('github')
+          if (!session) {
+            signIn('github')
+          } else {
+            signOut()
+          }
         }}
       >
-        Login by Github
+        {!session ? 'Login by Github' : 'Logout'}
       </StyledButton>
     </div>
   )

@@ -1,28 +1,30 @@
 import {
   Auth,
-  type AuthConfig,
-  type Session,
   createActionURL,
   setEnvDefaults,
+  type AuthConfig,
+  type Session,
 } from '@meta-muse/complied'
 
 import { API_VERSION } from '@core/app.config'
 import { isDev } from '@core/global/env.global'
-import type { FastifyReply, FastifyRequest } from 'fastify'
+import type { IncomingMessage, ServerResponse } from 'http'
+import { getRequest } from './req.util'
 
-export type FastifyAuthConfig = Omit<AuthConfig, 'raw'>
+export type ServerAuthConfig = Omit<AuthConfig, 'raw'>
 export type GetSessionResult = Promise<Session | null>
-
 export async function getSessionBase(
-  req: FastifyRequest,
-  config: FastifyAuthConfig,
+  req: IncomingMessage,
+  config: ServerAuthConfig,
 ) {
   setEnvDefaults(process.env, config)
 
+  const protocol = (req.headers['x-forwarded-proto'] || 'http') as string
   const url = createActionURL(
     'session',
-    req.protocol,
+    protocol,
     // @ts-expect-error
+
     new Headers(req.headers),
     process.env,
     config.basePath,
@@ -45,105 +47,52 @@ function getBasePath() {
   return isDev ? '/auth' : `/api/v${API_VERSION}/auth`
 }
 
-export function CreateAuth(config: FastifyAuthConfig) {
-  return async (req: FastifyRequest, res: FastifyReply) => {
+export function CreateAuth(config: ServerAuthConfig) {
+  return async (req: IncomingMessage, res: ServerResponse) => {
     try {
       config.basePath = getBasePath()
       setEnvDefaults(process.env, config)
 
-      const auth = await Auth(toWebRequest(req), config)
+      const auth = await Auth(await toWebRequest(req), config)
 
-      await toFastifyResponse(req, auth, res)
+      await toServerResponse(req, auth, res)
     } catch (error) {
+      console.error(error)
       // throw error
-      res.send(error.message)
+      res.end(error.message)
     }
   }
 }
 
-export function toWebRequest(req: FastifyRequest) {
-  const url = `${req.protocol}://${req.hostname}${req.url}`
+export async function toWebRequest(req: IncomingMessage) {
+  const host = req.headers.host || 'localhost'
+  const protocol = req.headers['x-forwarded-proto'] || 'http'
+  const base = `${protocol}://${host}`
 
-  const headers = new Headers()
-
-  Object.entries(req.headers).forEach(([key, value]) => {
-    if (Array.isArray(value)) {
-      value.forEach((v) => {
-        v && headers.append(key, v)
-      })
-      return
-    }
-
-    value && headers.append(key, value)
-  })
-
-  // GET and HEAD not allowed to receive body
-  const body = /GET|HEAD/.test(req.method) ? undefined : encodeRequestBody(req)
-
-  const request = new Request(url, {
-    method: req.method,
-    headers,
-    body,
-  })
-
-  return request
+  return getRequest(base, req)
 }
 
-function encodeRequestBody(req: FastifyRequest) {
-  const contentType = req.headers['content-type']
-
-  if (contentType?.includes('application/x-www-form-urlencoded')) {
-    return encodeUrlEncoded(req.body as Record<string, any>)
-  }
-
-  if (contentType?.includes('application/json')) {
-    return encodeJson(req.body as Record<string, any>)
-  }
-
-  return req.body as ReadableStream | string | undefined
-}
-
-function encodeUrlEncoded(object: Record<string, any> = {}) {
-  const params = new URLSearchParams()
-
-  for (const [key, value] of Object.entries(object)) {
-    if (Array.isArray(value)) {
-      value.forEach((v) => params.append(key, v))
-    } else {
-      params.append(key, value)
-    }
-  }
-
-  return params.toString()
-}
-
-function encodeJson(obj: Record<string, any>) {
-  return JSON.stringify(obj)
-}
-
-async function toFastifyResponse(
-  req: FastifyRequest,
+async function toServerResponse(
+  req: IncomingMessage,
   response: Response,
-  res: FastifyReply,
+  res: ServerResponse,
 ) {
   response.headers.forEach((value, key) => {
     if (value) {
-      res.header(key, value)
+      res.setHeader(key, value)
     }
   })
 
-  res.status(response.status)
-
-  res.header('Content-Type', response.headers.get('content-type') || '')
-  res.header('access-control-allow-methods', 'GET, POST')
-  res.header('access-control-allow-headers', 'content-type')
-  res.header(
+  res.setHeader('Content-Type', response.headers.get('content-type') || '')
+  res.setHeader('access-control-allow-methods', 'GET, POST')
+  res.setHeader('access-control-allow-headers', 'content-type')
+  res.setHeader(
     'access-control-allow-origin',
     req.headers.origin || req.headers.referer || req.headers.host || '*',
   )
-  res.header('access-control-allow-credentials', 'true')
+  res.setHeader('access-control-allow-credentials', 'true')
 
   const text = await response.text()
-
-  res.send(text)
+  res.writeHead(response.status, response.statusText)
+  res.end(text)
 }
