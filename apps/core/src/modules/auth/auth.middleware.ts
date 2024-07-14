@@ -1,15 +1,20 @@
-import type { NestMiddleware } from '@nestjs/common'
+import { Inject, type NestMiddleware } from '@nestjs/common'
 import type { IncomingMessage, ServerResponse } from 'http'
-import { authHandler } from './auth.config'
+import { AuthConfigInjectKey } from './auth.constant'
+import { CreateAuth, ServerAuthConfig } from './auth.implement'
 
 export class AuthMiddleware implements NestMiddleware {
+  constructor(
+    @Inject(AuthConfigInjectKey) private readonly config: ServerAuthConfig,
+  ) {}
+  authHandler = CreateAuth(this.config)
   async use(req: IncomingMessage, res: ServerResponse, next: () => void) {
     if (req.method !== 'GET' && req.method !== 'POST') {
       next()
       return
     }
 
-    await authHandler(req, res)
+    await this.authHandler(req, res)
 
     next()
   }

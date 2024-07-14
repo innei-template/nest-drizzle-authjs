@@ -24,6 +24,7 @@ import { GatewayModule } from './processors/gateway/gateway.module'
 import { HelperModule } from './processors/helper/helper.module'
 import { RequestContextMiddleware } from './common/middlewares/request-context.middleware'
 import { UserModule } from './modules/user/user.module'
+import { authConfig } from './modules/auth/auth.config'
 
 // Request ----->
 // Response <-----
@@ -44,7 +45,7 @@ const appInterceptors: Type<any>[] = [
     GatewayModule,
 
     // BIZ
-    AuthModule,
+    AuthModule.forRoot(authConfig),
     UserModule,
   ],
   controllers: [AppController],

@@ -1,6 +1,6 @@
-import { DrizzleAdapter, authjs } from '@meta-muse/complied'
-import { isDev } from '@core/global/env.global'
 import { API_VERSION, AUTH } from '@core/app.config'
+import { isDev } from '@core/global/env.global'
+import { DrizzleAdapter, authjs } from '@meta-muse/complied'
 
 import { db } from '@core/processors/database/database.service'
 import {
@@ -10,7 +10,7 @@ import {
   users,
   verificationTokens,
 } from '@meta-muse/drizzle/schema'
-import { CreateAuth, type ServerAuthConfig } from './auth.implement'
+import { type ServerAuthConfig } from './auth.implement'
 
 const {
   providers: { github: GitHub },
@@ -38,4 +38,3 @@ export const authConfig: ServerAuthConfig = {
     authenticatorsTable: authenticators,
   }),
 }
-export const authHandler = CreateAuth(authConfig)
