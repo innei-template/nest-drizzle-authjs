@@ -26,6 +26,9 @@
       ],
       "@pkg": [
         "./package.json"
+      ],
+      "@core/*": [
+        "../core/src/*"
       ]
     },
   },

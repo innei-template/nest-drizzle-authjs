@@ -44,3 +44,4 @@ apps/core/dist
 
 drizzle/*.js
 packages/*/dist
+.vite

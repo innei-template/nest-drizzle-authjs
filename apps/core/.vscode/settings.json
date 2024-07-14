@@ -12,10 +12,8 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "editor.codeActionsOnSave": {},
   "material-icon-theme.activeIconPack": "nest",
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.experimental.updateImportsOnPaste": true,
-  "editor.codeActionsOnSave": {
-    "quickfix.biome": "explicit"
-  }
+  "typescript.preferences.preferTypeOnlyAutoImports": false,
 }

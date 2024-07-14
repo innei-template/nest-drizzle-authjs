@@ -35,12 +35,12 @@ export function ErrorElement() {
     <div className="m-auto flex min-h-full max-w-prose select-text flex-col p-8 pt-12">
       <div className="fixed inset-x-0 top-0 h-12" />
       <div className="center flex flex-col">
-        <i className="i-mgc-bug-cute-re size-12 text-red-400" />
+        <i className="i-mingcute-bug-fill size-12 text-red-400" />
         <h2 className="mt-12 text-2xl">
           Sorry, the app has encountered an error
         </h2>
       </div>
-      <h3 className="text-xl">{message}</h3>
+      <h3 className="my-4 text-xl">{message}</h3>
       {import.meta.env.DEV && stack ? (
         <div className="mt-4 cursor-text overflow-auto whitespace-pre rounded-md bg-red-50 p-4 text-left font-mono text-sm text-red-600">
           {attachOpenInEditor(stack)}

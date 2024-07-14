@@ -1,7 +1,7 @@
 import { inspect } from 'node:util'
 
 import { DATABASE } from '@core/app.config'
-import { createDrizzle } from '@meta-muse/drizzle'
+import { createDrizzle } from '@packages/drizzle'
 import { Injectable, Logger } from '@nestjs/common'
 
 @Injectable()

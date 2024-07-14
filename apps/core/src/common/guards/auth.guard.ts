@@ -1,6 +1,7 @@
 /* eslint-disable dot-notation */
 import { isTest } from '@core/global/env.global'
 import { AuthService } from '@core/modules/auth/auth.service'
+import { createNotifyManager } from '@core/shared/utils/schedule.util'
 
 import { getNestExecutionContextRequest } from '@core/transformers/get-req.transformer'
 import {

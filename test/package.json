@@ -5,8 +5,8 @@
     "test": "dotenv -e ../.env.test vitest"
   },
   "dependencies": {
-    "@meta-muse/drizzle": "workspace:*",
-    "@meta-muse/utils": "workspace:*",
+    "@packages/drizzle": "workspace:*",
+    "@packages/utils": "workspace:*",
     "@nestjs/cache-manager": "2.2.2",
     "@nestjs/common": "10.3.10",
     "@nestjs/config": "3.2.3",

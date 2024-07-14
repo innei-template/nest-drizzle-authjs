@@ -4,7 +4,7 @@ import {
   type Session,
   createActionURL,
   setEnvDefaults,
-} from '@meta-muse/complied'
+} from '@packages/complied'
 
 import { API_VERSION } from '@core/app.config'
 import { isDev } from '@core/global/env.global'

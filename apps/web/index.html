@@ -1,13 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+
+    <script>
+      ;(function () {
+        var e =
+            window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches,
+          t = localStorage.getItem('theme') || '"system"'
+        t && t !== '"system"' && (document.documentElement.dataset.theme = t)
+        t &&
+          t === '"system"' &&
+          e &&
+          (document.documentElement.dataset.theme = 'dark')
+      })()
+    </script>
   </head>
-  <body>
-    <div id="root"></div>
+  <body class="flex min-h-screen flex-col">
+    <div id="root" class="flex min-h-full grow flex-col"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

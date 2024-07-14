@@ -47,12 +47,12 @@ export default defineConfig({
         replacement: resolve(__dirname, '../apps/core/src/$1'),
       },
       {
-        find: '@meta-muse/drizzle',
+        find: '@packages/drizzle',
         replacement: resolve(__dirname, '../drizzle/index.ts'),
       },
 
       {
-        find: '@meta-muse/utils',
+        find: '@packages/utils',
         replacement: resolve(__dirname, '../packages/utils/index.ts'),
       },
     ],

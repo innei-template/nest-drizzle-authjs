@@ -1,5 +1,5 @@
 {
-  "name": "@meta-muse/complied",
+  "name": "@packages/complied",
   "private": true,
   "description": "",
   "type": "module",

@@ -7,8 +7,8 @@ import {
   timestamp,
 } from 'drizzle-orm/pg-core'
 
-import { snowflake } from '@meta-muse/utils/snowflake'
-import type { AdapterAccountType } from '@meta-muse/complied'
+import { snowflake } from '@packages/utils/snowflake'
+import type { AdapterAccountType } from '@packages/complied'
 
 export const users = pgTable('user', {
   id: text('id')

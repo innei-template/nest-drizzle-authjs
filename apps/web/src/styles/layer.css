@@ -46,7 +46,7 @@
     --alpha: 2;
   }
 
-  [theme='dark'] .shadow-perfect {
+  [data-theme='dark'] .shadow-perfect {
     --tint: 221;
   }
 
@@ -68,5 +68,16 @@
       rgba(0, 0, 0, 0.067) 0px 3px 8px,
       rgba(0, 0, 0, 0.067) 0px 2px 5px,
       rgba(0, 0, 0, 0.067) 0px 1px 1px;
+  }
+}
+
+@layer base {
+  .border-border {
+    border-width: 1px;
+    border-color: #e5e7eb;
+  }
+
+  [data-theme='dark'] .border-border {
+    border-color: #374151;
   }
 }

@@ -1,6 +1,7 @@
 import { QueryClientProvider } from '@tanstack/react-query'
 import { LazyMotion, MotionConfig } from 'framer-motion'
 import { Provider } from 'jotai'
+import { ThemeProvider } from 'next-themes'
 import type { FC, PropsWithChildren } from 'react'
 
 import { Toaster } from '~/components/ui/sonner'
@@ -23,7 +24,9 @@ export const RootProviders: FC<PropsWithChildren> = ({ children }) => (
       <QueryClientProvider client={queryClient}>
         <Provider store={jotaiStore}>
           <StableRouterProvider />
-          {children}
+          <ThemeProvider disableTransitionOnChange storageKey="theme">
+            {children}
+          </ThemeProvider>
         </Provider>
       </QueryClientProvider>
     </MotionConfig>

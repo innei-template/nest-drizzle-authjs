@@ -1,5 +1,5 @@
 import { DATABASE } from '@core/app.config'
-import { createDrizzle, migrateDb } from '@meta-muse/drizzle'
+import { createDrizzle, migrateDb } from '@packages/drizzle'
 import { Injectable, OnModuleInit } from '@nestjs/common'
 // const drizzleLogger = new Logger('')
 

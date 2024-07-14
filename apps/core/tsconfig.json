@@ -13,7 +13,7 @@
       "@core/*": [
         "./src/*"
       ],
-      "@meta-muse/utils": [
+      "@packages/utils": [
         "../../packages/utils"
       ]
     },

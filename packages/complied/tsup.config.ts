@@ -6,4 +6,7 @@ export default defineConfig({
   entry: ['index.ts'],
   dts: true,
   format: ['cjs'],
+  treeshake: true,
+  splitting: true,
+  external: ['drizzle-orm'],
 })

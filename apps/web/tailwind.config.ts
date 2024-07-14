@@ -8,7 +8,7 @@ import typography from '@tailwindcss/typography'
 require('./cssAsPlugin')
 
 const twConfig: Config = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './index.html'],
   darkMode: ['class', '[data-theme="dark"]'],
   safelist: [],
   theme: {

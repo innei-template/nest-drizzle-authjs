@@ -1,5 +1,5 @@
 {
-  "name": "@meta-muse/drizzle",
+  "name": "@packages/drizzle",
   "private": true,
   "description": "",
   "license": "MIT",
@@ -13,8 +13,8 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@meta-muse/complied": "workspace:*",
-    "@meta-muse/utils": "workspace:*",
+    "@packages/complied": "workspace:*",
+    "@packages/utils": "workspace:*",
     "drizzle-kit": "0.23.0",
     "drizzle-orm": "0.32.0",
     "pg": "8.12.0",

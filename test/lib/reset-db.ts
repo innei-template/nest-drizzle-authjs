@@ -1,4 +1,4 @@
-import { schema as schemas } from '@meta-muse/drizzle'
+import { schema as schemas } from '@packages/drizzle'
 
 import { drizzle } from './drizzle'
 const noop = () => {}

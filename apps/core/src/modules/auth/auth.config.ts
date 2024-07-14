@@ -1,6 +1,6 @@
 import { API_VERSION, AUTH } from '@core/app.config'
 import { isDev } from '@core/global/env.global'
-import { DrizzleAdapter, authjs } from '@meta-muse/complied'
+import { DrizzleAdapter, authjs } from '@packages/complied'
 
 import { db } from '@core/processors/database/database.service'
 import {
@@ -9,7 +9,7 @@ import {
   sessions,
   users,
   verificationTokens,
-} from '@meta-muse/drizzle/schema'
+} from '@packages/drizzle/schema'
 import { type ServerAuthConfig } from './auth.implement'
 
 const {
@@ -30,6 +30,9 @@ export const authConfig: ServerAuthConfig = {
       clientSecret: AUTH.github.clientSecret,
     }),
   ],
+  experimental: {
+    enableWebAuthn: true,
+  },
   adapter: DrizzleAdapter(db, {
     usersTable: users,
     accountsTable: accounts,

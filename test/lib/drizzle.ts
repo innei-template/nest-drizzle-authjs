@@ -1,4 +1,4 @@
-import { createDrizzle } from '@meta-muse/drizzle'
+import { createDrizzle } from '@packages/drizzle'
 
 const dbUrl = process.env.DATABASE_URL!
 

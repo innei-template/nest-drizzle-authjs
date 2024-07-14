@@ -1,5 +1,5 @@
 {
-  "name": "@meta-muse/utils",
+  "name": "@packages/utils",
   "private": true,
   "description": "",
   "type": "module",

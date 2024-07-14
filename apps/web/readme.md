@@ -10,6 +10,7 @@ This template provide toolchain below:
 - TailwindCSS 3
 - daisyui
 - React Router DOM (auto generated routes)
+- Auth.js
 
 # Usage
 
@@ -20,4 +21,3 @@ pnpm dev
 
 # Screenshot
 
-![](https://i.imgur.com/ftvsXYB.png)
