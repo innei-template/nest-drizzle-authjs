@@ -202,6 +202,18 @@
 					}
 				}
 			}
+		},
+		{
+			"include": [
+				"./apps/core/src/**/*.ts"
+			],
+			"linter": {
+				"rules": {
+					"style": {
+						"useImportType": "off"
+					}
+				}
+			}
 		}
 	]
 }
