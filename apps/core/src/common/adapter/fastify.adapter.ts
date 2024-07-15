@@ -5,6 +5,16 @@ const app: FastifyAdapter = new FastifyAdapter({
 })
 export { app as fastifyApp }
 
+app.register(require('@scalar/fastify-api-reference'), {
+  routePrefix: '/reference',
+  configuration: {
+    title: 'Our API Reference',
+    spec: {
+      url: '/docs-json',
+    },
+  },
+})
+
 app.getInstance().addHook('onRequest', (request, reply, done) => {
   // set undefined origin
   const origin = request.headers.origin

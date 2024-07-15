@@ -211,6 +211,9 @@
 				"rules": {
 					"style": {
 						"useImportType": "off"
+					},
+					"correctness": {
+						"useHookAtTopLevel": "off"
 					}
 				}
 			}

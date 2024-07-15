@@ -2,6 +2,7 @@ import chalk from 'chalk'
 import { Logger } from 'nestjs-pretty-logger'
 
 import { NestFactory } from '@nestjs/core'
+import { patchNestjsSwagger } from '@wahyubucil/nestjs-zod-openapi' // <-- add this. Import the patch for NestJS Swagger
 
 import { CROSS_DOMAIN, PORT } from './app.config'
 import { AppModule } from './app.module'
@@ -10,7 +11,8 @@ import { SpiderGuard } from './common/guards/spider.guard'
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor'
 import { consola, logger } from './global/consola.global'
 import { isDev } from './shared/utils/environment.util'
-import type { NestFastifyApplication } from '@nestjs/platform-fastify'
+import { NestFastifyApplication } from '@nestjs/platform-fastify'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 // const APIVersion = 1
 const Origin = CROSS_DOMAIN.allowedOrigins
@@ -35,8 +37,18 @@ export async function bootstrap() {
     credentials: true,
   })
 
-  isDev && app.useGlobalInterceptors(new LoggingInterceptor())
+  if (isDev) {
+    app.useGlobalInterceptors(new LoggingInterceptor())
+  }
   app.useGlobalGuards(new SpiderGuard())
+
+  const config = new DocumentBuilder()
+    .setTitle('App API document')
+    .setVersion('1.0')
+    .build()
+  patchNestjsSwagger({ schemasSort: 'alpha' })
+  const document = SwaggerModule.createDocument(app, config)
+  SwaggerModule.setup('docs', app, document)
 
   await app.listen(+PORT, '0.0.0.0', async () => {
     app.useLogger(app.get(Logger))

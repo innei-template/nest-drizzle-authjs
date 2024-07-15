@@ -1,4 +1,4 @@
-import { createZodDto } from 'nestjs-zod'
+import { createZodDto } from '@wahyubucil/nestjs-zod-openapi'
 import { z } from 'zod'
 
 export const basePagerSchema = z.object({
