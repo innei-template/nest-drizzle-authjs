@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 export const md5 = (text: string) =>
   require('node:crypto').createHash('md5').update(text).digest('hex') as string
 

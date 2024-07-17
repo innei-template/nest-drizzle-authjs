@@ -48,9 +48,8 @@ export const createE2EApp = (module: ModuleMetadata) => {
         provide: APP_FILTER,
         useClass: AllExceptionsFilter,
       },
+      { provide: token, useValue: CacheService },
     )
-
-    nestModule.providers.push({ provide: token, useValue: CacheService })
     const app = await setupE2EApp(nestModule)
 
     proxy.app = app

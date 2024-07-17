@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import IORedis, { Redis } from 'ioredis'
+import IORedis, { type Redis } from 'ioredis'
 
 import { CacheService } from '@core/processors/cache/cache.service'
 import { Global, Module } from '@nestjs/common'

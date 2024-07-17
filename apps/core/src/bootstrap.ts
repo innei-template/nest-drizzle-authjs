@@ -11,7 +11,7 @@ import { SpiderGuard } from './common/guards/spider.guard'
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor'
 import { consola, logger } from './global/consola.global'
 import { isDev } from './shared/utils/environment.util'
-import { NestFastifyApplication } from '@nestjs/platform-fastify'
+import type { NestFastifyApplication } from '@nestjs/platform-fastify'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 // const APIVersion = 1

@@ -16,7 +16,7 @@
     "dev": "pnpm -C \"apps/core\" run start",
     "dev:web": "pnpm -C \"apps/web\" run dev",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "lint": "biome lint --apply src/**/*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json} --no-errors-on-unmatched",
+    "lint": "eslint --fix",
     "test": "pnpm -C \"test\" run test",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
@@ -27,14 +27,18 @@
     "lodash": "4.17.21"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.3",
+    "@eslint-react/eslint-plugin": "1.5.27",
     "@innei/bump-version": "^1.5.10",
     "@innei/prettier": "^0.13.2",
     "@nestjs/cli": "10.4.2",
     "@nestjs/schematics": "10.1.2",
+    "@sxzz/eslint-config": "3.14.0",
     "concurrently": "8.2.2",
     "dotenv-cli": "7.4.2",
     "drizzle-kit": "0.23.0",
+    "eslint": "9.7.0",
+    "eslint-plugin-react-hooks": "5.1.0-rc-01172397-20240716",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "fastify": "^4.28.1",
     "husky": "9.0.11",
     "lint-staged": "15.2.7",
@@ -56,7 +60,7 @@
       "prettier --ignore-path ./.prettierignore --write "
     ],
     "*.{js,ts,cjs,mjs,jsx,tsx,json}": [
-      "biome lint --apply --no-errors-on-unmatched"
+      "eslint --fix"
     ]
   },
   "bump": {

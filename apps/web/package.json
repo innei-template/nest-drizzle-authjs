@@ -12,7 +12,7 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "format": "prettier --write \"src/**/*.ts\" ",
-    "lint": "biome lint --apply src/**/*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json} --no-errors-on-unmatched"
+    "lint": "eslint --fix"
   },
   "dependencies": {
     "@auth/core": "0.34.1",
@@ -32,9 +32,6 @@
     "react-router-dom": "6.24.1",
     "sonner": "1.5.0",
     "tailwind-merge": "2.4.0"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged"
   },
   "devDependencies": {
     "@egoist/tailwindcss-icons": "1.8.1",
@@ -59,13 +56,5 @@
     "vite": "5.3.3",
     "vite-plugin-checker": "0.7.1",
     "vite-tsconfig-paths": "4.3.2"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --ignore-path ./.gitignore --write "
-    ],
-    "*.{js,ts,cjs,mjs,jsx,tsx,json}": [
-      "biome lint --apply --no-errors-on-unmatched"
-    ]
   }
 }

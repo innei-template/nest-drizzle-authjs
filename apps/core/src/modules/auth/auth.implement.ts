@@ -1,6 +1,6 @@
-import { Auth, setEnvDefaults, type AuthConfig } from '@packages/complied'
+import { Auth, type AuthConfig, setEnvDefaults } from '@packages/complied'
 
-import type { IncomingMessage, ServerResponse } from 'http'
+import type { IncomingMessage, ServerResponse } from 'node:http'
 import { getRequest } from './req.transformer'
 
 export type ServerAuthConfig = Omit<AuthConfig, 'basePath'> & {

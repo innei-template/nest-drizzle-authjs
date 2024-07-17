@@ -1,4 +1,5 @@
 import { name } from 'package.json'
+
 export enum RedisKeys {
   JWTStore = 'jwt_store',
   /** HTTP 请求缓存 */

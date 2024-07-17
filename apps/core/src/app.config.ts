@@ -15,11 +15,7 @@ export const CROSS_DOMAIN = {
   allowedOrigins: [
     'innei.in',
     'shizuri.net',
-    'localhost:9528',
-    'localhost:2323',
-    'localhost:3000',
-    'localhost:3333',
-    'localhost:5173',
+    'localhost',
     '127.0.0.1',
     'mbp.cc',
     'local.innei.test',

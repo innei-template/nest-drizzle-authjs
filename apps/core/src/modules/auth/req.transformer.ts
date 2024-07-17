@@ -17,7 +17,7 @@ function get_raw_body(req) {
   // check if no request body
   if (
     (req.httpVersionMajor === 1 &&
-      isNaN(content_length) &&
+      Number.isNaN(content_length) &&
       h['transfer-encoding'] == null) ||
     content_length === 0
   ) {

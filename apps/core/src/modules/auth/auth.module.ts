@@ -1,9 +1,9 @@
 import {
+  type DynamicModule,
   Global,
   Inject,
-  Module,
-  type DynamicModule,
   type MiddlewareConsumer,
+  Module,
   type NestModule,
 } from '@nestjs/common'
 

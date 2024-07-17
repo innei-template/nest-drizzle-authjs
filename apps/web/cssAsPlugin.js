@@ -1,8 +1,8 @@
 // https://github.com/tailwindlabs/tailwindcss-intellisense/issues/227#issuecomment-1462034856
 // cssAsPlugin.js
+const { readFileSync } = require('node:fs')
 const postcss = require('postcss')
 const postcssJs = require('postcss-js')
-const { readFileSync } = require('fs')
 
 require.extensions['.css'] = function (module, filename) {
   module.exports = ({ addBase, addComponents, addUtilities }) => {

@@ -1,5 +1,5 @@
 import { Inject, type NestMiddleware } from '@nestjs/common'
-import type { IncomingMessage, ServerResponse } from 'http'
+import type { IncomingMessage, ServerResponse } from 'node:http'
 import { AuthConfigInjectKey } from './auth.constant'
 import { CreateAuth, ServerAuthConfig } from './auth.implement'
 

@@ -19,4 +19,7 @@ export default defineConfig({
     APP_DEV_CWD: JSON.stringify(process.cwd()),
     APP_NAME: JSON.stringify(PKG.name),
   },
+  server: {
+    port: 9000,
+  },
 })

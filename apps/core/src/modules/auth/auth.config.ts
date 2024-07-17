@@ -10,7 +10,7 @@ import {
   users,
   verificationTokens,
 } from '@packages/drizzle/schema'
-import { type ServerAuthConfig } from './auth.implement'
+import type { ServerAuthConfig } from './auth.implement'
 
 const {
   providers: { github: GitHub },

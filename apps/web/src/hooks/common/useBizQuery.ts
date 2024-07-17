@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import type {
   InfiniteData,

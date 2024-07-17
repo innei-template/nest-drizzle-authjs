@@ -1,7 +1,7 @@
+'use client'
+
 import { cloneElement } from 'react'
 import type { JSX } from 'react'
-
-;('use client')
 
 export const ProviderComposer: Component<{
   contexts: JSX.Element[]

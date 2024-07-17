@@ -15,5 +15,5 @@
   "editor.codeActionsOnSave": {},
   "material-icon-theme.activeIconPack": "nest",
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.preferences.preferTypeOnlyAutoImports": false,
+  "typescript.preferences.preferTypeOnlyAutoImports": false
 }
