@@ -41,7 +41,7 @@
     "@socket.io/redis-adapter": "8.3.0",
     "@socket.io/redis-emitter": "5.1.0",
     "@wahyubucil/nestjs-zod-openapi": "0.1.2",
-    "axios": "1.7.2",
+    "axios": "1.7.4",
     "cache-manager": "5.7.2",
     "cache-manager-ioredis": "2.1.0",
     "chalk": "^4",
