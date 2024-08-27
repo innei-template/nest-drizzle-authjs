@@ -165,8 +165,8 @@ importers:
         specifier: 0.1.2
         version: 0.1.2(@nestjs/common@10.3.10)(@nestjs/swagger@7.4.0)(zod@3.23.8)
       axios:
-        specifier: 1.7.2
-        version: 1.7.2
+        specifier: 1.7.4
+        version: 1.7.4
       cache-manager:
         specifier: 5.7.2
         version: 5.7.2
@@ -4123,7 +4123,7 @@ packages:
       '@scalar/use-toasts': 0.7.4(typescript@5.5.3)
       '@scalar/use-tooltip': 1.0.2(typescript@5.5.3)
       '@vueuse/core': 10.11.0(vue@3.4.31)
-      axios: 1.7.2
+      axios: 1.7.4
       cva: 1.0.0-beta.1(typescript@5.5.3)
       fuse.js: 7.0.0
       js-cookie: 3.0.5
@@ -4164,7 +4164,7 @@ packages:
       '@unhead/schema': 1.9.16
       '@unhead/vue': 1.9.16(vue@3.4.31)
       '@vueuse/core': 10.11.0(vue@3.4.31)
-      axios: 1.7.2
+      axios: 1.7.4
       fuse.js: 7.0.0
       github-slugger: 2.0.0
       httpsnippet-lite: 3.0.5
@@ -4281,7 +4281,7 @@ packages:
     engines: {node: '>=18'}
     dependencies:
       '@scalar/themes': 0.9.13(typescript@5.5.3)
-      axios: 1.7.2
+      axios: 1.7.4
       nanoid: 5.0.7
       yaml: 2.4.5
       zod: 3.23.8
@@ -6085,8 +6085,8 @@ packages:
       '@fastify/error': 3.4.1
       fastq: 1.17.1
 
-  /axios@1.7.2:
-    resolution: {integrity: sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==}
+  /axios@1.7.4:
+    resolution: {integrity: sha512-DukmaFRnY6AzAALSH4J2M3k6PkaC+MfaAGdEERRWcC9q3/TWQwLpHR8ZRLKTdQ3aBDL64EdluRDjJqKw+BPZEw==}
     dependencies:
       follow-redirects: 1.15.6
       form-data: 4.0.0
