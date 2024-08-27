@@ -15,12 +15,12 @@
   "dependencies": {
     "@packages/complied": "workspace:*",
     "@packages/utils": "workspace:*",
-    "drizzle-kit": "0.23.0",
-    "drizzle-orm": "0.32.0",
+    "drizzle-kit": "0.23.2",
+    "drizzle-orm": "0.32.2",
     "pg": "8.12.0",
     "postgres": "3.4.4"
   },
   "devDependencies": {
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   }
 }
