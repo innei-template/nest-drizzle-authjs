@@ -179,6 +179,9 @@ importers:
       cls-hooked:
         specifier: 4.2.2
         version: 4.2.2
+      commander:
+        specifier: 12.1.0
+        version: 12.1.0
       consola:
         specifier: ^3.2.3
         version: 3.2.3
@@ -224,9 +227,6 @@ importers:
       zod:
         specifier: 3.23.8
         version: 3.23.8
-      zx-cjs:
-        specifier: 7.0.7-0
-        version: 7.0.7-0
     devDependencies:
       '@nestjs/cli':
         specifier: 10.4.2
@@ -252,9 +252,6 @@ importers:
       ioredis:
         specifier: ^5.4.1
         version: 5.4.1
-      zx:
-        specifier: 8.1.4
-        version: 8.1.4
 
   apps/web:
     dependencies:
@@ -6674,7 +6671,6 @@ packages:
   /commander@12.1.0:
     resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==}
     engines: {node: '>=18'}
-    dev: true
 
   /commander@2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
@@ -14624,11 +14620,6 @@ packages:
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
-    dev: false
-
-  /zx-cjs@7.0.7-0:
-    resolution: {integrity: sha512-CDwRWriV229ZQN5/wIk92DYQ33Q/jU2DvL+CQXa96qIwMINpW6RQWaXWCRticVDPF0CRKZ4y6uB/8GRzBw1MxA==}
-    engines: {node: '>= 16.0.0'}
     dev: false
 
   /zx@8.1.4:

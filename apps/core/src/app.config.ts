@@ -1,13 +1,23 @@
-import { argv } from 'zx-cjs'
-
+import { program } from 'commander'
 import { parseBooleanishValue } from './constants/parser.utilt'
 import { machineIdSync } from './shared/utils/machine.util'
-import { mergeArgv } from './utils/env.util'
+import 'dotenv-expand/config'
+
 import type { AxiosRequestConfig } from 'axios'
+import { isDev } from './global/env.global'
 
 export const API_VERSION = 1
 
-console.info(argv)
+program
+  .option('-p, --port <port>', 'port to listen')
+  .option('--disable_cache', 'disable cache')
+  .option('--redis_host <host>', 'redis host')
+  .option('--redis_port <port>', 'redis port')
+  .option('--redis_password <password>', 'redis password')
+  .option('--jwtSecret <secret>', 'jwt secret')
+
+program.parse(process.argv)
+const argv = program.opts()
 
 export const PORT = mergeArgv('port') || 3333
 
@@ -30,6 +40,8 @@ export const REDIS = {
   password: mergeArgv('redis_password') || null,
   ttl: null,
   max: 5,
+  disableApiCache:
+    (isDev || argv.disable_cache) && !process.env.ENABLE_CACHE_DEBUG,
 }
 
 export const HTTP_CACHE = {
@@ -74,4 +86,10 @@ export const AUTH = {
     clientSecret: mergeArgv('github_client_secret'),
   },
   secret: mergeArgv('auth_secret'),
+}
+
+function mergeArgv(key: string) {
+  const env = process.env
+  const toUpperCase = (key: string) => key.toUpperCase()
+  return argv[key] ?? env[toUpperCase(key)]
 }

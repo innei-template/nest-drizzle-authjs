@@ -1,4 +1,4 @@
-import { sleep } from 'zx-cjs'
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export function scheduleMicrotask(callback: () => void) {
   sleep(0).then(callback)

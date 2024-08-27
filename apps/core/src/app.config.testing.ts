@@ -1,10 +1,19 @@
-import { argv } from 'zx-cjs'
+import { program } from 'commander'
 
-import { isDev } from './shared/utils/environment.util'
-import { mergeArgv } from './utils/env.util'
 import type { AxiosRequestConfig } from 'axios'
+import { isDev } from './global/env.global'
 
-console.log(argv)
+program
+  .option('-p, --port [port]', 'port to listen')
+  .option('--disable_cache', 'disable cache')
+  .option('--redis_host [host]', 'redis host')
+  .option('--redis_port [port]', 'redis port')
+  .option('--redis_password [password]', 'redis password')
+  .option('--jwtSecret [secret]', 'jwt secret')
+
+program.parse(process.argv)
+
+const argv = program.opts()
 export const PORT = argv.port || 3333
 export const CROSS_DOMAIN = {
   allowedOrigins: [
@@ -41,4 +50,10 @@ export const SECURITY = {
 
 export const AXIOS_CONFIG: AxiosRequestConfig = {
   timeout: 10000,
+}
+
+function mergeArgv(key: string) {
+  const env = process.env
+  const toUpperCase = (key: string) => key.toUpperCase()
+  return argv[key] ?? env[toUpperCase(key)]
 }

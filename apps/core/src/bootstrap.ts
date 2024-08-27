@@ -10,9 +10,9 @@ import { fastifyApp } from './common/adapter/fastify.adapter'
 import { SpiderGuard } from './common/guards/spider.guard'
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor'
 import { consola, logger } from './global/consola.global'
-import { isDev } from './shared/utils/environment.util'
 import type { NestFastifyApplication } from '@nestjs/platform-fastify'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { isDev } from './global/env.global'
 
 // const APIVersion = 1
 const Origin = CROSS_DOMAIN.allowedOrigins

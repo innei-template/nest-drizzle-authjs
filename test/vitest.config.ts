@@ -20,7 +20,6 @@ export default defineConfig({
   test: {
     include: ['**/*.spec.ts', '**/*.e2e-spec.ts'],
 
-    threads: false,
     globals: true,
     setupFiles: [resolve(__dirname, './setup-file.ts')],
     environment: 'node',
@@ -31,10 +30,6 @@ export default defineConfig({
   },
   resolve: {
     alias: [
-      {
-        find: 'zx-cjs',
-        replacement: 'zx',
-      },
       {
         find: '@core/app.config',
         replacement: resolve(

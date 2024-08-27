@@ -9,7 +9,6 @@ import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
 
 import { HTTP_REQUEST_TIME } from '@core/constants/meta.constant'
-import { isDev } from '@core/shared/utils/environment.util'
 import {
   CallHandler,
   ExecutionContext,
@@ -18,6 +17,7 @@ import {
   NestInterceptor,
   SetMetadata,
 } from '@nestjs/common'
+import { isDev } from '@core/global/env.global'
 
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {
