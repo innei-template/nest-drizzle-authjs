@@ -96,6 +96,7 @@ export async function signIn<
     window.location.href = `${href}/signin?${new URLSearchParams({
       callbackUrl,
     })}`
+
     return
   }
 
