@@ -28,11 +28,19 @@ export const authConfig: ServerAuthConfig = {
     GitHub({
       clientId: AUTH.github.clientId,
       clientSecret: AUTH.github.clientSecret,
+      profile(profile) {
+        return {
+          id: profile.id.toString(),
+
+          email: profile.email,
+          name: profile.name || profile.login,
+          handle: profile.login,
+          image: profile.avatar_url,
+        }
+      },
     }),
   ],
-  experimental: {
-    enableWebAuthn: true,
-  },
+  trustHost: true,
   adapter: DrizzleAdapter(db, {
     usersTable: users,
     accountsTable: accounts,
