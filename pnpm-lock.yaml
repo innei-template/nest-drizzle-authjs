@@ -7511,7 +7511,7 @@ packages:
       avvio: 8.3.2
       fast-content-type-parse: 1.1.0
       fast-json-stringify: 5.16.1
-      find-my-way: 8.2.0
+      find-my-way: 8.2.2
       light-my-request: 5.13.0
       pino: link:external/pino
       process-warning: 3.0.0
@@ -7605,6 +7605,15 @@ packages:
 
   /find-my-way@8.2.0:
     resolution: {integrity: sha512-HdWXgFYc6b1BJcOBDBwjqWuHJj1WYiqrxSh25qtU4DabpMFdj/gSunNBQb83t+8Zt67D7CXEzJWTkxaShMTMOA==}
+    engines: {node: '>=14'}
+    dependencies:
+      fast-deep-equal: 3.1.3
+      fast-querystring: 1.1.2
+      safe-regex2: 3.1.0
+    dev: false
+
+  /find-my-way@8.2.2:
+    resolution: {integrity: sha512-Dobi7gcTEq8yszimcfp/R7+owiT4WncAJ7VTTgFH1jYJ5GaG1FbhjwDG820hptN0QDFvzVY3RfCzdInvGPGzjA==}
     engines: {node: '>=14'}
     dependencies:
       fast-deep-equal: 3.1.3
