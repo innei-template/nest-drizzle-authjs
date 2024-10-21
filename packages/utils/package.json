@@ -29,8 +29,8 @@
     "build": "tsup"
   },
   "devDependencies": {
-    "es-toolkit": "^1.9.0",
+    "es-toolkit": "^1.25.2",
     "nanoid": "5.0.7",
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.3"
   }
 }
