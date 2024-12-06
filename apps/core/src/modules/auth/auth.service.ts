@@ -1,13 +1,13 @@
+import { IncomingMessage } from 'node:http'
 import { Injectable } from '@nestjs/common'
-import { ServerAuthConfig } from './auth.implement'
 
 import {
   Auth,
-  type Session,
   createActionURL,
   setEnvDefaults,
+  type Session,
 } from '@packages/complied'
-import { IncomingMessage } from 'node:http'
+import { ServerAuthConfig } from './auth.implement'
 import type { users } from '@packages/drizzle/schema'
 
 export interface SessionUser {
@@ -31,7 +31,7 @@ export class AuthService {
 
       new Headers(req.headers),
       process.env,
-      config.basePath,
+      config,
     )
 
     const response = await Auth(
@@ -55,7 +55,7 @@ export class AuthService {
         callbacks: {
           ...authConfig.callbacks,
           async session(...args) {
-            resolve(args[0].session as SessionUser)
+            resolve(args[0].session as any as SessionUser)
 
             const session =
               (await authConfig.callbacks?.session?.(...args)) ??

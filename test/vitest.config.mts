@@ -3,18 +3,6 @@ import swc from 'unplugin-swc'
 import tsconfigPath from 'vite-tsconfig-paths'
 import { defineConfig } from 'vitest/config'
 
-// if (
-//   existsSync(
-//     path.resolve(__dirname, '../../node_modules/.cache/redis-memory-server'),
-//   )
-// ) {
-//   cpSync(
-//     path.resolve(__dirname, '../../node_modules/.cache/redis-memory-server'),
-//     path.resolve(__dirname, './node_modules/.cache/redis-memory-server'),
-//     { recursive: true },
-//   )
-// }
-
 export default defineConfig({
   root: './',
   test: {

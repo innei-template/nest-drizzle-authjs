@@ -15,8 +15,8 @@
     "build": "tsup"
   },
   "devDependencies": {
-    "@auth/core": "0.34.2",
-    "@auth/drizzle-adapter": "1.4.2",
-    "typescript": "^5.5.4"
+    "@auth/core": "0.37.4",
+    "@auth/drizzle-adapter": "1.7.4",
+    "typescript": "^5.7.2"
   }
 }

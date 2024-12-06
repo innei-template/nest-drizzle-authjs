@@ -49,5 +49,6 @@
     "./src/**/*.jsx",
     "./**/*.ts",
     "../apps/core/src/**/*.ts",
+    "vitest.config.mts",
   ]
 }
