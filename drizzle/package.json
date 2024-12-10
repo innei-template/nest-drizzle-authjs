@@ -15,8 +15,8 @@
   "dependencies": {
     "@packages/complied": "workspace:*",
     "@packages/utils": "workspace:*",
-    "drizzle-kit": "0.29.1",
-    "drizzle-orm": "0.37.0",
+    "drizzle-kit": "0.30.0",
+    "drizzle-orm": "0.38.0",
     "pg": "8.13.1",
     "postgres": "3.4.5"
   },
