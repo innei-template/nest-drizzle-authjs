@@ -1,8 +1,8 @@
 import { API_VERSION, AUTH } from '@core/app.config'
 import { isDev } from '@core/global/env.global'
-import { DrizzleAdapter, authjs } from '@packages/complied'
-
 import { db } from '@core/processors/database/database.service'
+
+import { authjs, DrizzleAdapter } from '@packages/compiled'
 import {
   accounts,
   authenticators,

@@ -1,3 +1,5 @@
+import { snowflake } from '@packages/utils/snowflake'
+
 import {
   boolean,
   integer,
@@ -6,9 +8,7 @@ import {
   text,
   timestamp,
 } from 'drizzle-orm/pg-core'
-
-import { snowflake } from '@packages/utils/snowflake'
-import type { AdapterAccountType } from '@packages/complied'
+import type { AdapterAccountType } from '@packages/compiled'
 
 export const users = pgTable('user', {
   id: text('id')

@@ -1,4 +1,4 @@
-import { Auth, setEnvDefaults, type AuthConfig } from '@packages/complied'
+import { Auth, setEnvDefaults, type AuthConfig } from '@packages/compiled'
 
 import { getRequest } from './req.transformer'
 import type { IncomingMessage, ServerResponse } from 'node:http'

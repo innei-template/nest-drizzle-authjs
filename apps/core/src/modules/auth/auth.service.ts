@@ -6,7 +6,7 @@ import {
   createActionURL,
   setEnvDefaults,
   type Session,
-} from '@packages/complied'
+} from '@packages/compiled'
 import { ServerAuthConfig } from './auth.implement'
 import type { users } from '@packages/drizzle/schema'
 

@@ -33,7 +33,7 @@
     "@nestjs/swagger": "8.1.0",
     "@nestjs/throttler": "6.2.1",
     "@nestjs/websockets": "10.4.13",
-    "@packages/complied": "workspace:*",
+    "@packages/compiled": "workspace:*",
     "@packages/drizzle": "workspace:*",
     "@packages/utils": "workspace:*",
     "@scalar/fastify-api-reference": "1.25.76",

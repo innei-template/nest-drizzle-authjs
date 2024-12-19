@@ -2,8 +2,8 @@ import * as AuthCore from '@auth/core'
 import * as AuthCoreAdapters from '@auth/core/adapters'
 
 import * as AuthCoreErrors from '@auth/core/errors'
-import * as AuthCoreGoogle from '@auth/core/providers/google'
 import * as AuthCoreGithub from '@auth/core/providers/github'
+import * as AuthCoreGoogle from '@auth/core/providers/google'
 
 export const authjs = {
   ...AuthCore,
