@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@auth/drizzle-adapter": "1.7.4",
-    "@fastify/static": "7.0.4",
+    "@fastify/static": "10.1.2",
     "@nestjs/cache-manager": "2.3.0",
     "@nestjs/common": "10.4.13",
     "@nestjs/config": "3.3.0",
