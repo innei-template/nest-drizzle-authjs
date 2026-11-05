@@ -15,7 +15,7 @@
     "lint": "eslint --fix"
   },
   "dependencies": {
-    "@auth/core": "0.37.4",
+    "@auth/core": "0.41.3",
     "@headlessui/react": "2.2.0",
     "@packages/drizzle": "workspace:*",
     "@radix-ui/react-avatar": "1.1.1",
